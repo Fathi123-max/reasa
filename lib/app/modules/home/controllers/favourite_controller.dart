@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:reasa/app/Model/resident_Model.dart';
 
@@ -33,15 +32,7 @@ class FavouriteController extends GetxController {
   // }
   // Rx<List<Resident>>(null);
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
   @override
   void onClose() {}

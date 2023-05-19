@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:reasa/app/Model/resident_Model.dart';
 
@@ -12,7 +11,6 @@ import 'package:reasa/app/modules/home/Widgets/show_menu_pop.dart';
 import 'package:reasa/app/modules/home/Widgets/wrapper.dart';
 import 'package:reasa/app/modules/home/views/Chat/Widgets/custom_appbar.dart';
 
-import 'package:reasa/app/modules/home/views/Chat/chat_screen.dart';
 import 'package:reasa/app/modules/home/views/Profile/Widgets/bookingContainer.dart';
 
 class MyBookingsScreen extends StatelessWidget {

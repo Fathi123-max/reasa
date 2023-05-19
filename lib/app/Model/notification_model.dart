@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:reasa/app/data/assets_path.dart';
 
 class NotificationModel {

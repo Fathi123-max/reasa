@@ -5,7 +5,6 @@ import 'package:iconly/iconly.dart';
 
 import 'package:reasa/app/Model/FaqModel.dart';
 import 'package:reasa/app/Model/contactusmodel.dart';
-import 'package:reasa/app/Model/resident_Model.dart';
 import 'package:reasa/app/data/chip_list.dart';
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
@@ -15,9 +14,7 @@ import 'package:reasa/app/modules/home/Widgets/search_textfeild.dart';
 import 'package:reasa/app/modules/home/Widgets/show_menu_pop.dart';
 import 'package:reasa/app/modules/home/Widgets/wrapper.dart';
 import 'package:reasa/app/modules/home/views/Chat/Widgets/custom_appbar.dart';
-import 'package:reasa/app/modules/home/views/Chat/chat_screen.dart';
 import 'package:reasa/app/modules/home/views/Profile/Screens/customer_service.dart';
-import 'package:reasa/app/modules/home/views/Profile/Widgets/bookingContainer.dart';
 import 'package:reasa/app/modules/home/views/Profile/Widgets/contactlist_widget.dart';
 
 class HelpCenterScreen extends StatelessWidget {

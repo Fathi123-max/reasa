@@ -15,8 +15,6 @@ import 'package:reasa/app/modules/home/Widgets/getback.dart';
 import 'package:reasa/app/modules/home/Widgets/wrapper.dart';
 import 'package:reasa/app/modules/home/controllers/favourite_controller.dart';
 import 'package:reasa/app/modules/home/views/homepage/bottom_nav_bar.dart';
-import 'package:reasa/app/modules/home/views/homepage/homepage_screen.dart';
-import 'package:reasa/app/modules/home/views/Auth/profile_form.dart';
 
 class ForgetPassword extends StatefulWidget {
   ForgetPassword({super.key});

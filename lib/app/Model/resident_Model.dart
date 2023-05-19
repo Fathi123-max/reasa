@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:reasa/app/data/assets_path.dart';
 
 class Resident {

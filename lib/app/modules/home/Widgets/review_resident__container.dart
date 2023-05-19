@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 
 import 'package:reasa/app/Model/resident_Model.dart';
-import 'package:reasa/app/data/assets_path.dart';
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
-import 'package:reasa/app/modules/home/Widgets/custom_app_bar.dart';
-import 'package:reasa/app/modules/home/Widgets/getback.dart';
-import 'package:reasa/app/modules/home/Widgets/review_row.dart';
-import 'package:reasa/app/modules/home/Widgets/wrapper.dart';
-import 'package:reasa/app/modules/home/views/booking/book_real_state.dart';
-import 'package:reasa/app/modules/home/views/booking/enter_pin_screen.dart';
 
 
 

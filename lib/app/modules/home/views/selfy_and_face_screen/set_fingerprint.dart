@@ -44,8 +44,8 @@ class SetFingerPrint extends StatelessWidget {
                       height: 236.1.h,
                       width: 228.09.w,
                       decoration: BoxDecoration(
-              image: new DecorationImage(
-                image: new AssetImage("assets/touchpad.png"),
+              image: DecorationImage(
+                image: AssetImage("assets/touchpad.png"),
                 fit: BoxFit.fill,
               ),)),
               Padding(

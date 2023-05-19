@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reasa/app/Model/languageModel.dart';
 
-import 'package:reasa/app/Model/setting_notification.dart';
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
 import 'package:reasa/app/modules/home/Widgets/custom_app_bar.dart';

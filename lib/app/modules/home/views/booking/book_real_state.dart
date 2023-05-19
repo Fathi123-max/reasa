@@ -4,14 +4,12 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 
 import 'package:reasa/app/Model/card_model.dart';
-import 'package:reasa/app/data/assets_path.dart';
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
 import 'package:reasa/app/modules/home/Widgets/custom_app_bar.dart';
 import 'package:reasa/app/modules/home/Widgets/getback.dart';
 import 'package:reasa/app/modules/home/Widgets/wrapper.dart';
 import 'package:reasa/app/modules/home/views/Profile/Widgets/continue_bottom_sheet.dart';
-import 'package:reasa/app/modules/home/views/booking/Enter_pin_screen.dart';
 import 'package:reasa/app/modules/home/views/booking/add_new_card.dart';
 import 'package:reasa/app/modules/home/views/booking/review_summary.dart';
 

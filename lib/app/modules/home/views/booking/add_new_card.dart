@@ -10,8 +10,6 @@ import 'package:reasa/app/modules/home/Widgets/custom_app_bar.dart';
 import 'package:reasa/app/modules/home/Widgets/form_testfeild.dart';
 import 'package:reasa/app/modules/home/Widgets/getback.dart';
 import 'package:reasa/app/modules/home/Widgets/wrapper.dart';
-import 'package:reasa/app/modules/home/views/Auth/pin_screen.dart';
-import 'package:reasa/app/modules/home/views/booking/Enter_pin_screen.dart';
 
 class AddNewCard extends StatelessWidget {
   AddNewCard({super.key});

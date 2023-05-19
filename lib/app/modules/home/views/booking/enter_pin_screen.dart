@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:reasa/app/data/assets_path.dart';
@@ -12,7 +11,6 @@ import 'package:reasa/app/modules/home/Widgets/custom_app_bar.dart';
 import 'package:reasa/app/modules/home/Widgets/getback.dart';
 import 'package:reasa/app/modules/home/Widgets/wrapper.dart';
 import 'package:reasa/app/modules/home/views/booking/erecipt.dart';
-import 'package:reasa/app/modules/home/views/selfy_and_face_screen/set_fingerprint.dart';
 
 class EnterPinScreen extends StatefulWidget {
   EnterPinScreen({super.key});

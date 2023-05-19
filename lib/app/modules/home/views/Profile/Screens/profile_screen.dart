@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 
@@ -23,7 +22,6 @@ import 'package:reasa/app/modules/home/views/Profile/Screens/security_profile.da
 import 'package:reasa/app/modules/home/views/Profile/Screens/update_profile.dart';
 import 'package:reasa/app/modules/home/views/Profile/Widgets/custom_switch.dart';
 import 'package:reasa/app/modules/home/views/Profile/Widgets/profile_tab_button.dart';
-import 'package:reasa/app/modules/home/views/notification/notification_Screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({super.key});

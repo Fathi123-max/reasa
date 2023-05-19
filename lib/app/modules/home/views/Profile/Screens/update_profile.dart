@@ -10,15 +10,12 @@ import 'package:reasa/app/data/assets_path.dart';
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
 import 'package:reasa/app/modules/home/Services/image_picker_services.dart';
-import 'package:reasa/app/modules/home/Widgets/congrats_transatioc_dialog.dart';
 import 'package:reasa/app/modules/home/Widgets/custom_app_bar.dart';
 import 'package:reasa/app/modules/home/Widgets/custom_drop.dart';
-import 'package:reasa/app/modules/home/Widgets/failed_dialogg.dart';
 import 'package:reasa/app/modules/home/Widgets/form_testfeild.dart';
 import 'package:reasa/app/modules/home/Widgets/getback.dart';
 import 'package:reasa/app/modules/home/Widgets/wrapper.dart';
 import 'package:reasa/app/modules/home/views/booking/book_real_state.dart';
-import 'package:reasa/app/modules/home/views/selfy_and_face_screen/selfy_with_card.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
   UpdateProfileScreen({super.key});

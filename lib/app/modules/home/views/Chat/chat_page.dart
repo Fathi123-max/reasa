@@ -8,7 +8,6 @@ import 'package:reasa/app/Model/user_model.dart';
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
 import 'package:reasa/app/modules/home/Widgets/chattextfeild.dart';
-import 'package:reasa/app/modules/home/Widgets/custom_app_bar.dart';
 import 'package:reasa/app/modules/home/Widgets/getback.dart';
 import 'package:reasa/app/modules/home/Widgets/show_menu_pop.dart';
 import 'package:reasa/app/modules/home/Widgets/wrapper.dart';

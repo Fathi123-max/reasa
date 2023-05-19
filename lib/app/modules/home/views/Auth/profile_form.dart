@@ -12,13 +12,9 @@ import 'package:reasa/app/data/typography.dart';
 import 'package:reasa/app/modules/home/Services/image_picker_services.dart';
 import 'package:reasa/app/modules/home/Widgets/custom_app_bar.dart';
 import 'package:reasa/app/modules/home/Widgets/custom_drop.dart';
-import 'package:reasa/app/modules/home/Widgets/custom_dropdown.dart';
-import 'package:reasa/app/modules/home/Widgets/custom_text_feild.dart';
 import 'package:reasa/app/modules/home/Widgets/form_testfeild.dart';
 import 'package:reasa/app/modules/home/Widgets/getback.dart';
-import 'package:reasa/app/modules/home/Widgets/small_outline_button.dart';
 import 'package:reasa/app/modules/home/Widgets/wrapper.dart';
-import 'package:reasa/app/modules/home/views/Auth/sign_in.dart';
 import 'package:reasa/app/modules/home/views/selfy_and_face_screen/selfy_with_card.dart';
 
 class ProfileForm extends StatefulWidget {

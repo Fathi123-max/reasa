@@ -7,7 +7,6 @@ import 'package:reasa/app/data/typography.dart';
 import 'package:reasa/app/modules/home/Widgets/custom_app_bar.dart';
 import 'package:reasa/app/modules/home/Widgets/row_button.dart';
 import 'package:reasa/app/modules/home/views/Auth/pin_screen.dart';
-import 'package:reasa/app/modules/home/views/selfy_and_face_screen/set_fingerprint.dart';
 
 class SelfyWithCard extends StatelessWidget {
   const SelfyWithCard({super.key});
@@ -48,8 +47,8 @@ class SelfyWithCard extends StatelessWidget {
                 height: 570.h,
                 width: 380.w,
                 decoration: BoxDecoration(
-                  image: new DecorationImage(
-                    image: new AssetImage("assets/profilepic.png"),
+                  image: DecorationImage(
+                    image: AssetImage("assets/profilepic.png"),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -64,8 +63,8 @@ class SelfyWithCard extends StatelessWidget {
                     height: 151.34.h,
                     width: 240.w,
                     decoration: BoxDecoration(
-                      image: new DecorationImage(
-                        image: new AssetImage("assets/Card.png"),
+                      image: DecorationImage(
+                        image: AssetImage("assets/Card.png"),
                         fit: BoxFit.fill,
                       ),
                     ),

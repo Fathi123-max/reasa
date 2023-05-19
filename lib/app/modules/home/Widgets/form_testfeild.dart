@@ -4,7 +4,6 @@ import 'package:iconly/iconly.dart';
 import 'package:intl/intl.dart';
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 class FormTextFeild extends StatefulWidget {

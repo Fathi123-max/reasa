@@ -7,12 +7,10 @@ import 'package:reasa/app/data/assets_path.dart';
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
 import 'package:reasa/app/modules/home/Widgets/custom_app_bar.dart';
-import 'package:reasa/app/modules/home/Widgets/custom_text_feild.dart';
 import 'package:reasa/app/modules/home/Widgets/getback.dart';
 import 'package:reasa/app/modules/home/Widgets/sms_or_email_cont.dart';
 import 'package:reasa/app/modules/home/Widgets/wrapper.dart';
 import 'package:reasa/app/modules/home/views/otp/opt_screen.dart';
-import 'package:reasa/app/modules/home/views/Auth/profile_form.dart';
 
 class ForgetPasswordMethod extends StatefulWidget {
   ForgetPasswordMethod({super.key});

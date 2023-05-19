@@ -12,9 +12,7 @@ import 'package:reasa/app/modules/home/Widgets/congratulation_dialog.dart';
 import 'package:reasa/app/modules/home/Widgets/custom_app_bar.dart';
 import 'package:reasa/app/modules/home/Widgets/row_button.dart';
 import 'package:reasa/app/modules/home/controllers/favourite_controller.dart';
-import 'package:reasa/app/modules/home/views/Auth/forget_password_method.dart';
 import 'package:reasa/app/modules/home/views/homepage/bottom_nav_bar.dart';
-import 'package:reasa/app/modules/home/views/homepage/homepage_screen.dart';
 
 class FaceRecoginationScan extends StatelessWidget {
    FaceRecoginationScan({super.key});

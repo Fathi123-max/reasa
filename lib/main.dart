@@ -1,13 +1,19 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+// ...
 import 'package:get/get.dart';
 import 'package:reasa/app/data/theme.dart';
 import 'package:reasa/app/modules/home/bindings/home_binding.dart';
 import 'package:reasa/app/modules/home/views/welcome_screens/splash_screen.dart';
 
+import 'firebase_options.dart';
+
 Future<void> main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);

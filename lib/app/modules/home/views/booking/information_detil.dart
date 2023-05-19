@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,15 +6,12 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
-import 'package:reasa/app/modules/home/Widgets/congrats_transatioc_dialog.dart';
 import 'package:reasa/app/modules/home/Widgets/custom_app_bar.dart';
 import 'package:reasa/app/modules/home/Widgets/custom_drop.dart';
-import 'package:reasa/app/modules/home/Widgets/failed_dialogg.dart';
 import 'package:reasa/app/modules/home/Widgets/form_testfeild.dart';
 import 'package:reasa/app/modules/home/Widgets/getback.dart';
 import 'package:reasa/app/modules/home/Widgets/wrapper.dart';
 import 'package:reasa/app/modules/home/views/booking/book_real_state.dart';
-import 'package:reasa/app/modules/home/views/selfy_and_face_screen/selfy_with_card.dart';
 
 class InformationDetailScreen extends StatefulWidget {
   InformationDetailScreen({super.key});
