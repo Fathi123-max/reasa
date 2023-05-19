@@ -1,8 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
-
 import 'package:reasa/app/Model/resident_Model.dart';
 import 'package:reasa/app/data/assets_path.dart';
 import 'package:reasa/app/data/chip_list.dart';
@@ -13,13 +13,15 @@ import 'package:reasa/app/modules/home/Widgets/resident_chip.dart';
 import 'package:reasa/app/modules/home/Widgets/resident_container.dart';
 import 'package:reasa/app/modules/home/Widgets/wrapper.dart';
 import 'package:reasa/app/modules/home/controllers/favourite_controller.dart';
+import 'package:reasa/app/modules/home/controllers/firebase_controller.dart';
 import 'package:reasa/app/modules/home/views/detailscreens/detailspage.dart';
 import 'package:reasa/app/modules/home/views/homepage/recommendation.dart';
 import 'package:reasa/app/modules/home/views/notification/notification_Screen.dart';
 import 'package:reasa/app/modules/home/views/search/search.dart';
 
 class Homepage extends StatelessWidget {
-  const Homepage({super.key});
+  Homepage({super.key});
+  final FirebaseService _firebaseService = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -213,32 +215,45 @@ class Homepage extends StatelessWidget {
             builder: (favController) {
               return SizedBox(
                 height: 1170.h,
-                child: GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 182.w / 274.h,
-                        crossAxisSpacing: 16.h,
-                        mainAxisSpacing: 16.h),
-                    itemCount: recommendedresidents.length,
-                    itemBuilder: (BuildContext ctx, index) {
-                      return RecommendedContainer(
-                          resident: recommendedresidents[index],
-                          onPressed: () {
-                            Get.to(() => DetailPage(
-                                  resident: recommendedresidents[index],
-                                ));
-                          },
-                          onFavouritePressed: () {
-                            favController
-                                .favouritepressed(recommendedresidents[index]);
-                            favController.update();
-                          },
-                          isFavoruited: favController.favlist.value
-                                  ?.contains(recommendedresidents[index]) ??
-                              false);
+                child: StreamBuilder<QuerySnapshot<Resident>>(
+                    stream: _firebaseService.residentsRef.snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                      final residents =
+                          snapshot.data!.docs.map((doc) => doc.data()).toList();
+
+                      return Obx(() => GridView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 24.w, vertical: 24.h),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  childAspectRatio: 182.w / 274.h,
+                                  crossAxisSpacing: 16.h,
+                                  mainAxisSpacing: 16.h),
+                          itemCount: residents.length,
+                          itemBuilder: (BuildContext ctx, index) {
+                            final resident = residents[index];
+                            return RecommendedContainer(
+                                resident: recommendedresidents[index],
+                                onPressed: () {
+                                  Get.to(() => DetailPage(
+                                        resident: recommendedresidents[index],
+                                      ));
+                                },
+                                onFavouritePressed: () {
+                                  favController.favouritepressed(
+                                      recommendedresidents[index]);
+                                  favController.update();
+                                },
+                                isFavoruited: favController.favlist.value
+                                        ?.contains(
+                                            recommendedresidents[index]) ??
+                                    false);
+                          }));
                     }),
               );
             },
@@ -248,3 +263,37 @@ class Homepage extends StatelessWidget {
     ));
   }
 }
+
+
+
+
+
+
+
+
+
+
+/*    return Scaffold(
+      appBar: AppBar(
+        title: Text('Residents List'),
+      ),
+      body: StreamBuilder<QuerySnapshot<Resident>>(
+        stream: _firebaseService.residentsRef.snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          }
+          final residents = snapshot.data!.docs.map((doc) => doc.data()).toList();
+          return Obx(() => ListView.builder(
+            itemCount: residents.length,
+            itemBuilder: (context, index) {
+              final resident = residents[index];
+              return ListTile(
+                title: Text(resident.name),
+                subtitle: Text('${resident.prize} ${resident.perdayNight}'),
+              );
+            },
+          ));
+        },
+      ),
+    ); */

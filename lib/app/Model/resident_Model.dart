@@ -1,3 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import 'package:reasa/app/data/assets_path.dart';
 
 class Resident {
@@ -21,11 +24,110 @@ class Resident {
     required this.perdayNight,
     required this.favourite,
   });
+
+  Resident copyWith({
+    String? image,
+    String? name,
+    String? city,
+    String? countrytag,
+    double? rating,
+    String? description,
+    double? prize,
+    String? perdayNight,
+    bool? favourite,
+  }) {
+    return Resident(
+      image: image ?? this.image,
+      name: name ?? this.name,
+      city: city ?? this.city,
+      countrytag: countrytag ?? this.countrytag,
+      rating: rating ?? this.rating,
+      description: description ?? this.description,
+      prize: prize ?? this.prize,
+      perdayNight: perdayNight ?? this.perdayNight,
+      favourite: favourite ?? this.favourite,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'image': image,
+      'name': name,
+      'city': city,
+      'countrytag': countrytag,
+      'rating': rating,
+      'description': description,
+      'prize': prize,
+      'perdayNight': perdayNight,
+      'favourite': favourite,
+    };
+  }
+
+  factory Resident.fromMap(Map<String, dynamic> map) {
+    return Resident(
+      image: map['image'] as String,
+      name: map['name'] as String,
+      city: map['city'] as String,
+      countrytag: map['countrytag'] as String,
+      rating: map['rating'] as double,
+      description: map['description'] as String,
+      prize: map['prize'] as double,
+      perdayNight: map['perdayNight'] as String,
+      favourite: map['favourite'] as bool,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Resident.fromJson(String source) =>
+      Resident.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() {
+    return 'Resident(image: $image, name: $name, city: $city, countrytag: $countrytag, rating: $rating, description: $description, prize: $prize, perdayNight: $perdayNight, favourite: $favourite)';
+  }
+
+  @override
+  bool operator ==(covariant Resident other) {
+    if (identical(this, other)) return true;
+
+    return other.image == image &&
+        other.name == name &&
+        other.city == city &&
+        other.countrytag == countrytag &&
+        other.rating == rating &&
+        other.description == description &&
+        other.prize == prize &&
+        other.perdayNight == perdayNight &&
+        other.favourite == favourite;
+  }
+
+  @override
+  int get hashCode {
+    return image.hashCode ^
+        name.hashCode ^
+        city.hashCode ^
+        countrytag.hashCode ^
+        rating.hashCode ^
+        description.hashCode ^
+        prize.hashCode ^
+        perdayNight.hashCode ^
+        favourite.hashCode;
+  }
 }
 
-List<Resident> featuredresidents = [modernica,merialla];
-List<Resident> recommendedresidents = [grandmansion,alphahousing,millhouse, asstute,whiteCottage,carraigehouse,meadowview,sweetVilla];
-List<Resident> favouriteresidents = [twoappart,eastside,heartandsoul,licky];
+List<Resident> featuredresidents = [modernica, merialla];
+List<Resident> recommendedresidents = [
+  grandmansion,
+  alphahousing,
+  millhouse,
+  asstute,
+  whiteCottage,
+  carraigehouse,
+  meadowview,
+  sweetVilla
+];
+List<Resident> favouriteresidents = [twoappart, eastside, heartandsoul, licky];
 
 Resident modernicafull = Resident(
   image: CustomAssets.modernica,
