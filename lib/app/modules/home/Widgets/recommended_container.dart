@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
-
 import 'package:reasa/app/Model/resident_Model.dart';
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
@@ -18,8 +17,6 @@ class RecommendedContainer extends StatelessWidget {
     required this.onFavouritePressed,
     required this.isFavoruited,
   }) : super(key: key);
-
- 
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +39,7 @@ class RecommendedContainer extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.r),
                 image: DecorationImage(
-                  image: AssetImage(resident.image),
+                  image: NetworkImage(resident.image),
                   fit: BoxFit.fill,
                 ),
               ),
