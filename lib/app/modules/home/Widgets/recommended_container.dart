@@ -92,7 +92,7 @@ class RecommendedContainer extends StatelessWidget {
           SizedBox(height: 10.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 14.w),
-            child: "${resident.city}, ${resident.countrytag}".xsmall(
+            child: "${resident.city}, ${resident.countryTag}".xsmall(
                 color: CustomColor.kgrey700,
                 fontWeight: CustomFontWeight.kMediumFontWeight),
           ),
@@ -101,7 +101,7 @@ class RecommendedContainer extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 14.w),
             child: Row(
               children: [
-                "\$${resident.prize}".h5(
+                "\$${resident.price}".h5(
                     color: CustomColor.kprimaryblue,
                     fontWeight: CustomFontWeight.kBoldFontWeight),
                 " / night".xsmall(

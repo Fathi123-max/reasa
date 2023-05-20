@@ -94,7 +94,7 @@ class RowResidentContainer extends StatelessWidget {
                 SizedBox(height: 12.h),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 14.w),
-                  child: "${resident.city}, ${resident.countrytag}".medium(
+                  child: "${resident.city}, ${resident.countryTag}".medium(
                       color: CustomColor.kgrey700,
                       fontWeight: CustomFontWeight.kRegularWeight),
                 ),
@@ -125,7 +125,7 @@ class RowResidentContainer extends StatelessWidget {
                 SizedBox(
                   height: 24.15.h,
                 ),
-                "\$${resident.prize}".h4(
+                "\$${resident.price}".h4(
                     color: CustomColor.kprimaryblue,
                     fontWeight: CustomFontWeight.kBoldFontWeight),
                 SizedBox(

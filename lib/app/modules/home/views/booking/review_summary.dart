@@ -37,9 +37,9 @@ class ReviewSummary extends StatelessWidget {
                   SizedBox(
                     height: 24.h,
                   ),
-                  ResidentReviewContainer(
-                    resident: modernicafull,
-                  ),
+                  // ResidentReviewContainer(
+                  //   resident: modernicafull,
+                  // ),
                   SizedBox(height: 24.h),
                   Container(
                       height: 154.h,
@@ -147,9 +147,12 @@ class ReviewSummary extends StatelessWidget {
                                 color: CustomColor.kgrey900,
                                 fontWeight: CustomFontWeight.kBoldFontWeight),
                             Spacer(),
-                            CustomTextButton(onPressed:  () {
-        Get.to(() => BookRealState());
-      }, text: 'Change',),
+                            CustomTextButton(
+                              onPressed: () {
+                                Get.to(() => BookRealState());
+                              },
+                              text: 'Change',
+                            ),
                           ],
                         ),
                       )),
@@ -197,7 +200,6 @@ class CustomTextButton extends StatelessWidget {
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           alignment: Alignment.topLeft),
       onPressed: onPressed,
-      
       child: text.large(
           color: CustomColor.kprimaryblue,
           fontWeight: CustomFontWeight.kBoldFontWeight),

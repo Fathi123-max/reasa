@@ -126,7 +126,9 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 10.h,),
+                      SizedBox(
+                        height: 10.h,
+                      ),
                       isView
                           ? Expanded(
                               child: ListView.separated(
@@ -229,17 +231,17 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                                         SizedBox(
                                                           height: 24.h,
                                                         ),
-                                                        Center(
-                                                          child:
-                                                              RowResidentContainer(
-                                                            resident:
-                                                                favouriteresidents[
-                                                                    index],
-                                                            onPressed: () {},
-                                                            onfavouritepressed:
-                                                                true,
-                                                          ),
-                                                        ),
+                                                        // Center(
+                                                        //   child:
+                                                        //   //     RowResidentContainer(
+                                                        //   //   resident:
+                                                        //   //       favouriteresidents[
+                                                        //   //           index],
+                                                        //   //   onPressed: () {},
+                                                        //   //   onfavouritepressed:
+                                                        //   //       true,
+                                                        //   // ),
+                                                        // ),
                                                         SizedBox(
                                                           height: 24.h,
                                                         ),

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
-
 import 'package:reasa/app/Model/resident_Model.dart';
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
-
-
 
 class ResidentReviewContainer extends StatelessWidget {
   final Resident resident;
@@ -93,7 +90,7 @@ class ResidentReviewContainer extends StatelessWidget {
               SizedBox(height: 12.h),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 14.w),
-                child: "${resident.city}, ${resident.countrytag}".medium(
+                child: "${resident.city}, ${resident.countryTag}".medium(
                     color: CustomColor.kgrey700,
                     fontWeight: CustomFontWeight.kRegularWeight),
               ),
@@ -104,7 +101,7 @@ class ResidentReviewContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              "\$${resident.prize}".h4(
+              "\$${resident.price}".h4(
                   color: CustomColor.kprimaryblue,
                   fontWeight: CustomFontWeight.kBoldFontWeight),
               SizedBox(
@@ -120,4 +117,3 @@ class ResidentReviewContainer extends StatelessWidget {
     );
   }
 }
-

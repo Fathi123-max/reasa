@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
-
 import 'package:reasa/app/Model/resident_Model.dart';
 import 'package:reasa/app/data/assets_path.dart';
 import 'package:reasa/app/data/chip_list.dart';
@@ -9,8 +8,6 @@ import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
 import 'package:reasa/app/modules/home/Widgets/custom_drop.dart';
 import 'package:reasa/app/modules/home/Widgets/getback.dart';
-import 'package:reasa/app/modules/home/Widgets/recommended_container.dart';
-import 'package:reasa/app/modules/home/Widgets/resident_row_container.dart';
 import 'package:reasa/app/modules/home/Widgets/row_button.dart';
 import 'package:reasa/app/modules/home/Widgets/search_textfeild.dart';
 import 'package:reasa/app/modules/home/Widgets/wrapper.dart';
@@ -53,6 +50,7 @@ class _SearchScreenState extends State<SearchScreen> {
               height: 56.h,
               width: 336.w,
               child: SearchTextFeild(
+                onChanged: (p0) {},
                 controller: serachController,
                 textInputType: TextInputType.multiline,
                 hintText: "Search",
@@ -77,8 +75,6 @@ class _SearchScreenState extends State<SearchScreen> {
                             //   borderRadius: BorderRadius.vertical(top: Radius.circular(24.r))
                             // ),
                             child: Column(
-                         
-                              
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SizedBox(
@@ -209,25 +205,28 @@ class _SearchScreenState extends State<SearchScreen> {
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 20.w),
                                           child: DropDownCustom(
-                          value: selectedlocation,
-                          OnChanged: (String? value) {
-                            setState(() {
-                              selectedlocation = value!;
-                            });
-                          },
-                          items: loction.map((String items) {
-                            return DropdownMenuItem(
-                                value: items,
-                                child: Text(items,
-                                    style: CustomTextStyle.kmedium.copyWith(
-                                      color: CustomColor.kgrey900,
-                                      fontWeight:
-                                          CustomFontWeight.kSemiBoldFontWeight,
-                                    )));
-                          }).toList(),
-                          hint: '',
-                          hintenable: true,
-                        ),
+                                            value: selectedlocation,
+                                            OnChanged: (String? value) {
+                                              setState(() {
+                                                selectedlocation = value!;
+                                              });
+                                            },
+                                            items: loction.map((String items) {
+                                              return DropdownMenuItem(
+                                                  value: items,
+                                                  child: Text(items,
+                                                      style: CustomTextStyle
+                                                          .kmedium
+                                                          .copyWith(
+                                                        color: CustomColor
+                                                            .kgrey900,
+                                                        fontWeight: CustomFontWeight
+                                                            .kSemiBoldFontWeight,
+                                                      )));
+                                            }).toList(),
+                                            hint: '',
+                                            hintenable: true,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -280,15 +279,15 @@ class _SearchScreenState extends State<SearchScreen> {
                         );
                       });
                 },
-                onChanged: (value) {
-                  setState(() {
-                    searchrecommendedresidents = recommendedresidents
-                        .where((element) => element.name
-                            .toLowerCase()
-                            .contains(value.toLowerCase()))
-                        .toList();
-                  });
-                },
+                // onChanged: (value) {
+                //   setState(() {
+                //     searchrecommendedresidents = recommendedresidents
+                //         .where((element) => element.name
+                //             .toLowerCase()
+                //             .contains(value.toLowerCase()))
+                //         .toList();
+                //   });
+                // },
               ),
             ),
           ],
@@ -342,50 +341,50 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
 
         /// Not Found Condition
-        serachController.text.isNotEmpty && searchrecommendedresidents.isEmpty
-            ? NotFoundCondition()
-            : isView
-                ? Expanded(
-                    child: ListView.separated(
-                      padding: EdgeInsets.all(24.h),
-                      separatorBuilder: (BuildContext context, int index) {
-                        return SizedBox(
-                          height: 34.h,
-                        );
-                      },
-                      itemCount: serachController.text.isNotEmpty
-                          ? searchrecommendedresidents.length
-                          : recommendedresidents.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return RowResidentContainer(
-                          resident: serachController.text.isNotEmpty
-                              ? searchrecommendedresidents[index]
-                              : recommendedresidents[index], onPressed: () {  }, onfavouritepressed: false,
-                        );
-                      },
-                    ),
-                  )
-                : Expanded(
-                    child: GridView.builder(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 24.w, vertical: 24.h),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 182.w / 274.h,
-                            crossAxisSpacing: 16.h,
-                            mainAxisSpacing: 16.h),
-                        itemCount: serachController.text.isNotEmpty
-                            ? searchrecommendedresidents.length
-                            : recommendedresidents.length,
-                        itemBuilder: (BuildContext ctx, index) {
-                          return RecommendedContainer(
-                            resident: serachController.text.isNotEmpty
-                                ? searchrecommendedresidents[index]
-                                : recommendedresidents[index],
-                            onPressed: () {}, onFavouritePressed: () {  }, isFavoruited: false,
-                          );
-                        }),
-                  ),
+        // serachController.text.isNotEmpty && searchrecommendedresidents.isEmpty
+        //     ? NotFoundCondition()
+        //     : isView
+        //         ? Expanded(
+        //             child: ListView.separated(
+        //               padding: EdgeInsets.all(24.h),
+        //               separatorBuilder: (BuildContext context, int index) {
+        //                 return SizedBox(
+        //                   height: 34.h,
+        //                 );
+        //               },
+        //               itemCount: serachController.text.isNotEmpty
+        //                   ? searchrecommendedresidents.length
+        //                   : recommendedresidents.length,
+        //               itemBuilder: (BuildContext context, int index) {
+        //                 return RowResidentContainer(
+        //                   resident: serachController.text.isNotEmpty
+        //                       ? searchrecommendedresidents[index]
+        //                       : recommendedresidents[index], onPressed: () {  }, onfavouritepressed: false,
+        //                 );
+        //               },
+        //             ),
+        //           )
+        //         : Expanded(
+        //             child: GridView.builder(
+        //                 padding: EdgeInsets.symmetric(
+        //                     horizontal: 24.w, vertical: 24.h),
+        //                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        //                     crossAxisCount: 2,
+        //                     childAspectRatio: 182.w / 274.h,
+        //                     crossAxisSpacing: 16.h,
+        //                     mainAxisSpacing: 16.h),
+        //                 itemCount: serachController.text.isNotEmpty
+        //                     ? searchrecommendedresidents.length
+        //                     : recommendedresidents.length,
+        //                 itemBuilder: (BuildContext ctx, index) {
+        //                   return RecommendedContainer(
+        //                     resident: serachController.text.isNotEmpty
+        //                         ? searchrecommendedresidents[index]
+        //                         : recommendedresidents[index],
+        //                     onPressed: () {}, onFavouritePressed: () {  }, isFavoruited: false,
+        //                   );
+        //                 }),
+        //           ),
       ]),
     )));
   }
@@ -437,4 +436,3 @@ class NotFoundCondition extends StatelessWidget {
     );
   }
 }
-

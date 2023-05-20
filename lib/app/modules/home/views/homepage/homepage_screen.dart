@@ -10,7 +10,6 @@ import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
 import 'package:reasa/app/modules/home/Widgets/recommended_container.dart';
 import 'package:reasa/app/modules/home/Widgets/resident_chip.dart';
-import 'package:reasa/app/modules/home/Widgets/resident_container.dart';
 import 'package:reasa/app/modules/home/Widgets/wrapper.dart';
 import 'package:reasa/app/modules/home/controllers/firebase_controller.dart';
 import 'package:reasa/app/modules/home/views/detailscreens/detailspage.dart';
@@ -30,7 +29,7 @@ class Homepage extends StatelessWidget {
       child: Scaffold(
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              Get.to(AddResidentPage());
+              Get.to(ResidentFormScreen());
             },
             child: const Icon(Icons.add),
           ),
@@ -167,24 +166,54 @@ class Homepage extends StatelessWidget {
               // ),
               SizedBox(
                   height: 400.h,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.symmetric(horizontal: 24.w),
-                    separatorBuilder: (BuildContext context, int index) {
-                      return SizedBox(
-                        width: 20.w,
-                      );
-                    },
-                    itemCount: featuredresidents.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return FeaturedResidentContainer(
-                        resident: featuredresidents[index],
-                        onPressed: () {
-                          Get.to(() => DetailPage(
-                                resident: featuredresidents[index],
-                              ));
+                  child: StreamBuilder<QuerySnapshot<Resident>>(
+                    stream: _firebaseService.residentsRef.snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                      final residents =
+                          snapshot.data!.docs.map((doc) => doc.data()).toList();
+
+                      return GetBuilder<FirebaseController>(
+                        init: FirebaseController(),
+                        builder: (favController) {
+                          return SizedBox(
+                            height: 500.h,
+                            child: GridView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 24.w,
+                                vertical: 24.h,
+                              ),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                childAspectRatio: 182.w / 274.h,
+                                crossAxisSpacing: 16.h,
+                                mainAxisSpacing: 16.h,
+                              ),
+                              itemCount: residents.length,
+                              itemBuilder: (BuildContext ctx, index) {
+                                final resident = residents[index];
+
+                                return RecommendedContainer(
+                                  resident: resident,
+                                  onPressed: () {
+                                    Get.to(() => DetailPage(
+                                          resident: resident,
+                                        ));
+                                  },
+                                  onFavouritePressed: () {
+                                    favController.toggleFavourite(resident);
+                                  },
+                                  isFavoruited:
+                                      favController.isFavourited(resident),
+                                );
+                              },
+                            ),
+                          );
                         },
-                        onFavouritePressed: () {},
                       );
                     },
                   )),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
-
 import 'package:reasa/app/Model/resident_Model.dart';
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
@@ -18,7 +17,8 @@ class FeaturedResidentContainer extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<FeaturedResidentContainer> createState() => _FeaturedResidentContainerState();
+  State<FeaturedResidentContainer> createState() =>
+      _FeaturedResidentContainerState();
 }
 
 class _FeaturedResidentContainerState extends State<FeaturedResidentContainer> {
@@ -83,16 +83,17 @@ class _FeaturedResidentContainerState extends State<FeaturedResidentContainer> {
             SizedBox(height: 10.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 26.w),
-              child: "${widget.resident.city}, ${widget.resident.countrytag}".large(
-                  color: CustomColor.kbackgroundwhite,
-                  fontWeight: CustomFontWeight.kRegularWeight),
+              child: "${widget.resident.city}, ${widget.resident.countryTag}"
+                  .large(
+                      color: CustomColor.kbackgroundwhite,
+                      fontWeight: CustomFontWeight.kRegularWeight),
             ),
             SizedBox(height: 10.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 26.w),
               child: Row(
                 children: [
-                  "\$${widget.resident.prize}".h4(
+                  "\$${widget.resident.price}".h4(
                       color: CustomColor.kbackgroundwhite,
                       fontWeight: CustomFontWeight.kBoldFontWeight),
                   "/ night".medium(
@@ -102,9 +103,8 @@ class _FeaturedResidentContainerState extends State<FeaturedResidentContainer> {
                   InkWell(
                     onTap: () {
                       setState(() {
-                         widget.resident.favourite = !widget.resident.favourite;
+                        widget.resident.favourite = !widget.resident.favourite;
                       });
-                     
                     },
                     child: widget.resident.favourite
                         ? Icon(

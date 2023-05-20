@@ -3,6 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:reasa/app/Model/chatmodel.dart';
+import 'package:reasa/app/Model/resident_Model.dart';
+import 'package:reasa/app/data/assets_path.dart';
+import 'package:reasa/app/data/constants.dart';
+import 'package:reasa/app/data/typography.dart';
+import 'package:reasa/app/modules/home/Widgets/getback.dart';
 import 'package:reasa/app/modules/home/views/Chat/chat_page.dart';
 import 'package:reasa/app/modules/home/views/Chat/voice_call.dart';
 import 'package:reasa/app/modules/home/views/booking/book_calender.dart';
@@ -10,19 +15,13 @@ import 'package:reasa/app/modules/home/views/detailscreens/gallery.dart';
 import 'package:reasa/app/modules/home/views/detailscreens/review.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import 'package:reasa/app/Model/resident_Model.dart';
-import 'package:reasa/app/data/assets_path.dart';
-import 'package:reasa/app/data/constants.dart';
-import 'package:reasa/app/data/typography.dart';
-import 'package:reasa/app/modules/home/Widgets/getback.dart';
-
 class DetailPage extends StatelessWidget {
   final Resident resident;
   const DetailPage({
     Key? key,
     required this.resident,
   }) : super(key: key);
- //final Uri url = "tel:0311 2210823";   
+  //final Uri url = "tel:0311 2210823";
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +44,7 @@ class DetailPage extends StatelessWidget {
                       Row(
                         //crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          "\$${resident.prize}".h3(
+                          "\$${resident.price}".h3(
                             color: CustomColor.kprimaryblue,
                             fontWeight: CustomFontWeight.kBoldFontWeight,
                           ),
@@ -393,7 +392,7 @@ class DetailPage extends StatelessWidget {
                     padding: EdgeInsets.zero,
                     constraints: BoxConstraints(),
                     onPressed: () {
-                      Get.to(()=> ChatPage(message: message1 ));
+                      Get.to(() => ChatPage(message: message1));
                     },
                     icon: Icon(
                       IconlyLight.chat,
@@ -406,8 +405,8 @@ class DetailPage extends StatelessWidget {
                 IconButton(
                     padding: EdgeInsets.zero,
                     constraints: BoxConstraints(),
-                    onPressed: (){
-                       Get.to(()=> VoiceCallScreen());
+                    onPressed: () {
+                      Get.to(() => VoiceCallScreen());
                     },
                     icon: Icon(
                       IconlyLight.call,
@@ -456,7 +455,8 @@ class DetailPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              FacilitiesCont(title: 'Car Parking', image: CustomAssets.carparking),
+              FacilitiesCont(
+                  title: 'Car Parking', image: CustomAssets.carparking),
               SizedBox(
                 width: 8.h,
               ),
@@ -477,19 +477,27 @@ class DetailPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              FacilitiesCont(title: 'WiFi & Net..', image: CustomAssets.wifi,),
+              FacilitiesCont(
+                title: 'WiFi & Net..',
+                image: CustomAssets.wifi,
+              ),
               SizedBox(
                 width: 8.h,
               ),
-              FacilitiesCont(title: 'Pet Center', image: CustomAssets.petcenter),
+              FacilitiesCont(
+                  title: 'Pet Center', image: CustomAssets.petcenter),
               SizedBox(
                 width: 8.h,
               ),
-              FacilitiesCont(title: 'Sport Center', image: CustomAssets.sportcenter),
+              FacilitiesCont(
+                  title: 'Sport Center', image: CustomAssets.sportcenter),
               SizedBox(
                 width: 8.h,
               ),
-              FacilitiesCont(title: 'Laundary', image: CustomAssets.laundary,),
+              FacilitiesCont(
+                title: 'Laundary',
+                image: CustomAssets.laundary,
+              ),
             ],
           ),
           Padding(
@@ -587,7 +595,7 @@ class DetailPage extends StatelessWidget {
                   size: 22.sp,
                 ),
                 SizedBox(width: 8.w),
-                "Grand City St. 100, ${resident.city} , ${resident.countrytag} "
+                "Grand City St. 100, ${resident.city} , ${resident.countryTag} "
                     .medium(
                         color: CustomColor.kgrey700,
                         fontWeight: CustomFontWeight.kMediumFontWeight),
@@ -736,44 +744,44 @@ class DetailPage extends StatelessWidget {
             ),
           ),
           Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: 12.h,
-            horizontal: 24.h,
+            padding: EdgeInsets.symmetric(
+              vertical: 12.h,
+              horizontal: 24.h,
+            ),
+            child:
+                "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home 😍😍"
+                    .medium(
+                        color: CustomColor.kgrey900,
+                        fontWeight: CustomFontWeight.kRegularWeight),
           ),
-          child:
-              "The apartment is very nice, clean and modern. I really like the interior design. Looks like I'll feel at home 😍😍"
-                  .medium(
-                      color: CustomColor.kgrey900,
-                      fontWeight: CustomFontWeight.kRegularWeight),
-        ),
-        Padding(
-          padding: EdgeInsets.only(
-            left: 24.h,
+          Padding(
+            padding: EdgeInsets.only(
+              left: 24.h,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Icon(
+                  IconlyLight.heart,
+                  color: CustomColor.kprimaryblue,
+                  size: 24.sp,
+                ),
+                SizedBox(
+                  width: 10.5.w,
+                ),
+                "938".toString().small(
+                    color: CustomColor.kgrey900,
+                    fontWeight: CustomFontWeight.kMediumFontWeight),
+                SizedBox(
+                  width: 24.w,
+                ),
+                "6 days ago".small(
+                  color: CustomColor.kgrey700,
+                  fontWeight: CustomFontWeight.kMediumFontWeight,
+                ),
+              ],
+            ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Icon(
-                IconlyLight.heart,
-                color: CustomColor.kprimaryblue,
-                size: 24.sp,
-              ),
-              SizedBox(
-                width: 10.5.w,
-              ),
-              "938".toString().small(
-                  color: CustomColor.kgrey900,
-                  fontWeight: CustomFontWeight.kMediumFontWeight),
-              SizedBox(
-                width: 24.w,
-              ),
-              "6 days ago".small(
-                color: CustomColor.kgrey700,
-                fontWeight: CustomFontWeight.kMediumFontWeight,
-              ),
-            ],
-          ),
-        ),
         ])));
   }
 }

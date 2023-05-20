@@ -129,7 +129,9 @@ class _MapScreenState extends State<MapScreen> {
                 });
               },
               child: Image.asset(
-                onlocation?CustomAssets.maplocationred :CustomAssets.mapcomponets,
+                onlocation
+                    ? CustomAssets.maplocationred
+                    : CustomAssets.mapcomponets,
                 height: 371.h,
                 width: 349.w,
                 fit: BoxFit.contain,
@@ -138,11 +140,11 @@ class _MapScreenState extends State<MapScreen> {
             SizedBox(
               height: 28.h,
             ),
-            onlocation
-                ? RowResidentContainer(
-                    resident: modernicafull, onPressed: () {  }, onfavouritepressed: false,
-                  )
-                : SizedBox(),
+            // onlocation
+            //     ? RowResidentContainer(
+            //         resident: modernicafull, onPressed: () {  }, onfavouritepressed: false,
+            //       )
+            //     : SizedBox(),
           ]),
         ),
       ),

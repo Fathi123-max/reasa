@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 
-
 import 'package:reasa/app/Model/resident_Model.dart';
 import 'package:reasa/app/data/chip_list.dart';
 import 'package:reasa/app/data/constants.dart';
@@ -45,26 +44,26 @@ class OurRecommendation extends StatelessWidget {
                     chiplist: residentchip,
                   ),
                 ),
-                Expanded(
-                  child: GridView.builder(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 24.w, vertical: 24.h),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 182.w / 274.h,
-                          crossAxisSpacing: 16.h,
-                          mainAxisSpacing: 16.h),
-                      itemCount: recommendedresidents.length,
-                      itemBuilder: (BuildContext ctx, index) {
-                        return RecommendedContainer(
-                          resident: recommendedresidents[index],
-                          onPressed: () {
-                          },
-                          onFavouritePressed: () {},
-                          isFavoruited: false,
-                        );
-                      }),
-                ),
+                // Expanded(
+                //   child: GridView.builder(
+                //       padding: EdgeInsets.symmetric(
+                //           horizontal: 24.w, vertical: 24.h),
+                //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                //           crossAxisCount: 2,
+                //           childAspectRatio: 182.w / 274.h,
+                //           crossAxisSpacing: 16.h,
+                //           mainAxisSpacing: 16.h),
+                //       itemCount: recommendedresidents.length,
+                //       itemBuilder: (BuildContext ctx, index) {
+                //         return RecommendedContainer(
+                //           resident: recommendedresidents[index],
+                //           onPressed: () {
+                //           },
+                //           onFavouritePressed: () {},
+                //           isFavoruited: false,
+                //         );
+                //       }),
+                // ),
               ],
             )));
   }
