@@ -32,7 +32,7 @@ class _FeaturedResidentContainerState extends State<FeaturedResidentContainer> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40.r),
           image: DecorationImage(
-            image: AssetImage(widget.resident.image),
+            image: NetworkImage(widget.resident.image),
             fit: BoxFit.fill,
           ),
         ),
@@ -72,7 +72,7 @@ class _FeaturedResidentContainerState extends State<FeaturedResidentContainer> {
               ),
             ),
             SizedBox(
-              height: 230.h,
+              height: 140.h,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 26.w),

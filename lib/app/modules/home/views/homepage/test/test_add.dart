@@ -13,21 +13,26 @@ class _ResidentFormScreenState extends State<ResidentFormScreen> {
   final _formKey = GlobalKey<FormState>();
 
   // Create variables to store the form input
-  String image = '';
-  List<String> imagesOfProperty = [];
-  String location = '';
-  String bedRooms = '';
-  String bathRooms = '';
-  String sizeRoom = '';
-  String owner = '';
+  String image =
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80';
+  List<String> imagesOfProperty = [
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+  ];
+  String location = 'Madinat Nasr';
+  String bedRooms = '2';
+  String bathRooms = '2';
+  String sizeRoom = '250';
+  String owner = 'Ahmed Magdy';
   String name = '';
-  String city = '';
-  String countryTag = '';
-  double rating = 0.0;
-  String description = '';
-  double price = 0.0;
-  String perDayNight = '';
-  bool favourite = false;
+  String city = 'Madinat Nasr';
+  String countryTag = 'EG';
+  double rating = 4.5;
+  String description = 'We have alote of parking and rest alote ';
+  double price = 4500.0;
+  String perDayNight = '250';
+  bool favourite = true;
 
   @override
   Widget build(BuildContext context) {

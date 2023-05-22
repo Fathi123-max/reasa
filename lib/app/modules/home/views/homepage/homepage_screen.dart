@@ -18,6 +18,8 @@ import 'package:reasa/app/modules/home/views/homepage/test/test_add.dart';
 import 'package:reasa/app/modules/home/views/notification/notification_Screen.dart';
 import 'package:reasa/app/modules/home/views/search/search.dart';
 
+import '../../Widgets/resident_container.dart';
+
 class Homepage extends StatelessWidget {
   Homepage({super.key});
   final FirebaseController _firebaseService = Get.find();
@@ -179,16 +181,16 @@ class Homepage extends StatelessWidget {
                         init: FirebaseController(),
                         builder: (favController) {
                           return SizedBox(
-                            height: 500.h,
+                            height: 700.h,
                             child: GridView.builder(
-                              physics: NeverScrollableScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
                               padding: EdgeInsets.symmetric(
                                 horizontal: 24.w,
                                 vertical: 24.h,
                               ),
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
+                                crossAxisCount: 1,
                                 childAspectRatio: 182.w / 274.h,
                                 crossAxisSpacing: 16.h,
                                 mainAxisSpacing: 16.h,
@@ -197,7 +199,7 @@ class Homepage extends StatelessWidget {
                               itemBuilder: (BuildContext ctx, index) {
                                 final resident = residents[index];
 
-                                return RecommendedContainer(
+                                return FeaturedResidentContainer(
                                   resident: resident,
                                   onPressed: () {
                                     Get.to(() => DetailPage(
@@ -207,8 +209,6 @@ class Homepage extends StatelessWidget {
                                   onFavouritePressed: () {
                                     favController.toggleFavourite(resident);
                                   },
-                                  isFavoruited:
-                                      favController.isFavourited(resident),
                                 );
                               },
                             ),

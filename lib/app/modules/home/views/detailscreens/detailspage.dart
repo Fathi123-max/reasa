@@ -28,7 +28,7 @@ class DetailPage extends StatelessWidget {
     final controller = PageController(viewportFraction: 0.8, keepPage: true);
     return Scaffold(
         bottomSheet: SizedBox(
-            height: 100.h,
+            height: 130.h,
             child: Padding(
               padding: EdgeInsets.only(
                   left: 24.w, right: 24.w, top: 24.h, bottom: 24.h),
@@ -59,7 +59,7 @@ class DetailPage extends StatelessWidget {
                   Spacer(),
                   SizedBox(
                     height: 58.h,
-                    width: 259.w,
+                    width: 220.w,
                     child: ElevatedButton(
                         onPressed: () {
                           Get.to(() => BookCalenderScreen());
@@ -192,11 +192,6 @@ class DetailPage extends StatelessWidget {
                                     SizedBox(
                                       width: 8.h,
                                     ),
-                                    ShareCont(
-                                      title: 'Tiktok',
-                                      image: CustomAssets.tiktok,
-                                      onPressed: () {},
-                                    ),
                                     SizedBox(
                                       width: 8.h,
                                     ),
@@ -234,37 +229,44 @@ class DetailPage extends StatelessWidget {
         body: SingleChildScrollView(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Container(
-            height: 460.h,
-            width: 428.w,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(CustomAssets.newmodernica),
-                fit: BoxFit.fill,
-              ),
-            ),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 436.h,
-                ),
-                Container(
+          SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: 465.h,
+              child: Stack(children: [
+                PageView(
+                    controller: controller,
+                    children: resident.imagesOfProperty
+                        .map(
+                          (e) => Container(
+                            height: 460.h,
+                            width: 500.w,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(e),
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                        )
+                        .toList()),
+                Positioned(
+                  left: MediaQuery.of(context).size.width * .4,
+                  right: MediaQuery.of(context).size.width * .4,
+                  bottom: 20.h,
                   child: SmoothPageIndicator(
                     controller: controller,
-                    count: 4,
+                    count: resident.imagesOfProperty.length,
                     effect: ExpandingDotsEffect(
                         dotHeight: 8,
                         dotWidth: 8,
                         dotColor: CustomColor.kgrey200,
                         activeDotColor: CustomColor.kprimaryblue),
                   ),
-                ),
-              ],
-            ),
-          ),
+                )
+              ])),
           Padding(
             padding: EdgeInsets.only(top: 24.h, left: 24.w),
-            child: "Modernica Apartment".h3(
+            child: "${resident.owner}".h3(
                 color: CustomColor.kgrey900,
                 fontWeight: CustomFontWeight.kBoldFontWeight),
           ),
@@ -313,7 +315,7 @@ class DetailPage extends StatelessWidget {
                 SizedBox(
                   width: 8.w,
                 ),
-                "8 beds".medium(
+                "${resident.bedRooms} beds".medium(
                     color: CustomColor.kgrey800,
                     fontWeight: CustomFontWeight.kSemiBoldFontWeight),
                 SizedBox(
@@ -328,7 +330,7 @@ class DetailPage extends StatelessWidget {
                 SizedBox(
                   width: 8.w,
                 ),
-                "3 bath".medium(
+                "${resident.bathRooms} bath".medium(
                     color: CustomColor.kgrey800,
                     fontWeight: CustomFontWeight.kSemiBoldFontWeight),
                 SizedBox(
@@ -343,7 +345,7 @@ class DetailPage extends StatelessWidget {
                 SizedBox(
                   width: 8.w,
                 ),
-                "2000 sqft".medium(
+                "${resident.sizeRoom} sqft".medium(
                     color: CustomColor.kgrey800,
                     fontWeight: CustomFontWeight.kSemiBoldFontWeight),
                 SizedBox(
@@ -367,7 +369,7 @@ class DetailPage extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 24.r,
-                  backgroundImage: AssetImage(CustomAssets.natprofile),
+                  backgroundImage: NetworkImage(resident.image),
                 ),
                 SizedBox(
                   width: 20.w,
@@ -376,7 +378,7 @@ class DetailPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    "Natasya Wilodra".h6(
+                    "${resident.owner}".h6(
                         color: CustomColor.kgrey900,
                         fontWeight: CustomFontWeight.kBoldFontWeight),
                     SizedBox(
@@ -424,11 +426,9 @@ class DetailPage extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
-            child:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut"
-                    .large(
-                        color: CustomColor.kgrey800,
-                        fontWeight: CustomFontWeight.kMediumFontWeight),
+            child: "${resident.description}".large(
+                color: CustomColor.kgrey800,
+                fontWeight: CustomFontWeight.kMediumFontWeight),
           ),
           Padding(
             padding: EdgeInsets.only(
@@ -524,23 +524,38 @@ class DetailPage extends StatelessWidget {
               ],
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: 118.h,
-                width: 118.w,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.r),
-                  image: DecorationImage(
-                    image: AssetImage(CustomAssets.newmodernica),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 13.h,
-              ),
+          SizedBox(
+            height: 120.h,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: resident.imagesOfProperty.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Row(
+                  children: [
+                    SizedBox(
+                      width: 13.h,
+                    ),
+                    Container(
+                      height: 118.h,
+                      width: 118.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20.r),
+                        image: DecorationImage(
+                          image: NetworkImage(resident.imagesOfProperty[index]),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 13.h,
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+
+          /*
               Container(
                 height: 118.h,
                 width: 118.w,
@@ -577,8 +592,8 @@ class DetailPage extends StatelessWidget {
                   ),
                 ),
               ),
-            ],
-          ),
+        */
+
           Padding(
             padding: EdgeInsets.only(left: 24.w, top: 24.h, bottom: 20.h),
             child: "Location".h5(
@@ -651,7 +666,7 @@ class DetailPage extends StatelessWidget {
               ),
             ]),
           ),
-          Padding(
+          /*   Padding(
             padding: EdgeInsets.only(
                 top: 24.h, left: 24.w, right: 24.w, bottom: 12.h),
             child: Row(
@@ -782,6 +797,7 @@ class DetailPage extends StatelessWidget {
               ],
             ),
           ),
+      */
         ])));
   }
 }
@@ -798,8 +814,8 @@ class FacilitiesCont extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 88.h,
-        width: 89.w,
+        height: 98.h,
+        width: 98.w,
         child: Column(children: [
           Image.asset(
             image,

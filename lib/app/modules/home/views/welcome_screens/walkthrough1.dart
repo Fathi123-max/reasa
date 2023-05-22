@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:reasa/app/modules/home/views/Auth/let_you_in.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import 'package:reasa/app/data/assets_path.dart';
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
+import 'package:reasa/app/modules/home/views/homepage/bottom_nav_bar.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class WalkThrough extends StatefulWidget {
   WalkThrough({super.key});
@@ -38,10 +37,8 @@ class _WalkThroughState extends State<WalkThrough> {
         text: 'Thousands of the\nbest real estate\nat affordable prices',
         image: CustomAssets.welcome1,
         onPressed: () {
-          
-           controller.animateToPage(1,
-                  duration: Duration(microseconds: 500),
-                  curve: Curves.bounceOut);
+          controller.animateToPage(1,
+              duration: Duration(microseconds: 500), curve: Curves.bounceOut);
         },
         buttontext: 'Next',
       ),
@@ -50,9 +47,8 @@ class _WalkThroughState extends State<WalkThrough> {
         text: 'Book a real estate\nquickly and easily\nwith one click',
         image: CustomAssets.welcome2,
         onPressed: () {
-           controller.animateToPage(2,
-                  duration: Duration(microseconds: 500),
-                  curve: Curves.bounceOut);
+          controller.animateToPage(2,
+              duration: Duration(microseconds: 500), curve: Curves.bounceOut);
         },
         buttontext: 'Next',
       ),
@@ -61,7 +57,7 @@ class _WalkThroughState extends State<WalkThrough> {
         text: 'Let\'s find the real\nestate that suits you\nright now!',
         image: CustomAssets.welcome3,
         onPressed: () {
-          Get.to(() => LetYouIn());
+          Get.to(() => NavigationBarScreen());
         },
         buttontext: 'Get Started',
       ),

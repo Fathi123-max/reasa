@@ -8,7 +8,7 @@ import 'package:reasa/app/data/theme.dart';
 import 'package:reasa/app/modules/home/bindings/home_binding.dart';
 import 'package:reasa/app/modules/home/controllers/firebase_controller.dart';
 
-import 'app/modules/home/views/homepage/homepage_screen.dart';
+import 'app/modules/home/views/welcome_screens/splash_screen.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -35,7 +35,7 @@ Future<void> main() async {
           title: 'Reasa',
           // initialRoute: AppPages.INITIAL,
           //getPages: AppPages.routes,
-          home: Homepage(),
+          home: SplashScreen(),
           initialBinding: HomeBinding(),
         );
       }));
