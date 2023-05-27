@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reasa/app/data/assets_path.dart';
-
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
-
-
-
-
-
-
 
 class SenderTextWidget extends StatelessWidget {
   final String text;
@@ -84,7 +77,6 @@ class ReciverTextWidget extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 24.w),
             child: Row(
-              
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 SizedBox(
@@ -105,11 +97,11 @@ class ReciverTextWidget extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(bottom: 3.h),
                   child: Image.asset(
-                                CustomAssets.iconcheck,
-                                height: 8.h,
-                                width: 14.w,
-                                fit: BoxFit.contain,
-                              ),
+                    CustomAssets.iconcheck,
+                    height: 8.h,
+                    width: 14.w,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ],
             ),

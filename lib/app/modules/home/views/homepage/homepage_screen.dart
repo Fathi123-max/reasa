@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -182,34 +183,37 @@ class Homepage extends StatelessWidget {
                       return SizedBox(
                         height: 400.h,
                         width: MediaQuery.of(context).size.width,
-                        child: GridView.builder(
-                          scrollDirection: Axis.horizontal,
-                          padding: EdgeInsets.symmetric(
-                            vertical: 24.h,
-                          ),
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 1,
-                            childAspectRatio: 182.w / 274.h,
-                            crossAxisSpacing: 16.h,
-                            mainAxisSpacing: 16.h,
-                          ),
-                          itemCount: residents.length,
-                          itemBuilder: (BuildContext ctx, index) {
-                            final resident = residents[index];
-
-                            return FeaturedResidentContainer(
-                              resident: resident,
-                              onPressed: () {
-                                Get.to(() => DetailPage(
-                                      resident: resident,
-                                    ));
-                              },
-                              onFavouritePressed: () {
-                                favController.toggleFavourite(resident);
-                              },
+                        child: CarouselSlider(
+                          items: residents.map((resident) {
+                            return Container(
+                              width: double.infinity,
+                              child: FeaturedResidentContainer(
+                                resident: resident,
+                                onPressed: () {
+                                  Get.to(() => DetailPage(
+                                        resident: resident,
+                                      ));
+                                },
+                                onFavouritePressed: () {
+                                  favController.toggleFavourite(resident);
+                                },
+                              ),
                             );
-                          },
+                          }).toList(),
+                          options: CarouselOptions(
+                            height: 400.h,
+                            initialPage: 0,
+                            enableInfiniteScroll: true,
+                            reverse: false,
+                            autoPlay: true,
+                            autoPlayInterval: Duration(seconds: 3),
+                            autoPlayAnimationDuration:
+                                Duration(milliseconds: 800),
+                            autoPlayCurve: Curves.fastOutSlowIn,
+                            enlargeCenterPage: true,
+                            scrollDirection: Axis.horizontal,
+                            onPageChanged: (index, reason) {},
+                          ),
                         ),
                       );
                     },
