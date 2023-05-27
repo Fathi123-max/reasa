@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:reasa/app/Model/chatmodel.dart';
 import 'package:reasa/app/Model/resident_Model.dart';
 import 'package:reasa/app/data/assets_path.dart';
@@ -11,7 +12,9 @@ import 'package:reasa/app/modules/home/Widgets/getback.dart';
 import 'package:reasa/app/modules/home/views/Chat/chat_page.dart';
 import 'package:reasa/app/modules/home/views/Chat/voice_call.dart';
 import 'package:reasa/app/modules/home/views/booking/book_calender.dart';
+import 'package:reasa/app/modules/home/views/detailscreens/full_map_sccreen.dart';
 import 'package:reasa/app/modules/home/views/detailscreens/gallery.dart';
+import 'package:reasa/app/modules/home/views/detailscreens/map.dart';
 import 'package:reasa/app/modules/home/views/detailscreens/review.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -25,7 +28,9 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = PageController(viewportFraction: 0.8, keepPage: true);
+    final LatLng location = LatLng(37.7749, -122.4194);
+
+    final controller = PageController(viewportFraction: 1, keepPage: true);
     return Scaffold(
         bottomSheet: SizedBox(
             height: 130.h,
@@ -238,9 +243,9 @@ class DetailPage extends StatelessWidget {
                     children: resident.imagesOfProperty
                         .map(
                           (e) => Container(
-                            height: 460.h,
-                            width: 500.w,
+                            margin: EdgeInsets.all(7.h),
                             decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30.r),
                               image: DecorationImage(
                                 image: NetworkImage(e),
                                 fit: BoxFit.fill,
@@ -266,7 +271,7 @@ class DetailPage extends StatelessWidget {
               ])),
           Padding(
             padding: EdgeInsets.only(top: 24.h, left: 24.w),
-            child: "${resident.owner}".h3(
+            child: resident.owner.h3(
                 color: CustomColor.kgrey900,
                 fontWeight: CustomFontWeight.kBoldFontWeight),
           ),
@@ -378,7 +383,7 @@ class DetailPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    "${resident.owner}".h6(
+                    resident.owner.h6(
                         color: CustomColor.kgrey900,
                         fontWeight: CustomFontWeight.kBoldFontWeight),
                     SizedBox(
@@ -426,7 +431,7 @@ class DetailPage extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
-            child: "${resident.description}".large(
+            child: resident.description.large(
                 color: CustomColor.kgrey800,
                 fontWeight: CustomFontWeight.kMediumFontWeight),
           ),
@@ -623,20 +628,24 @@ class DetailPage extends StatelessWidget {
             ),
             height: 200.h,
             width: 380.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.r),
-              image: DecorationImage(
-                image: AssetImage(CustomAssets.maoplocation),
-                fit: BoxFit.fill,
-              ),
+            child: Stack(
+              children: [
+                MapWidget(
+                  location: location,
+                ),
+                Positioned(
+                  right: 5.h,
+                  top: 5.h,
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      // Show big view of the map
+                      Get.to(FullScreenMap(location: location));
+                    },
+                    child: Icon(Icons.fullscreen),
+                  ),
+                ),
+              ],
             ),
-            child: Center(
-                child: Image.asset(
-              CustomAssets.maplocation,
-              height: 61.45.h,
-              width: 52.04.w,
-              fit: BoxFit.contain,
-            )),
           ),
           Padding(
             padding: EdgeInsets.all(24.h),

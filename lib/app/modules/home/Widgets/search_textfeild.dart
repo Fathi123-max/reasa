@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
-
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
 
@@ -45,7 +44,7 @@ class _SearchTextFeildState extends State<SearchTextFeild> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       autofocus: false,
       onChanged: widget.onChanged,
       focusNode: focusNode,
@@ -55,16 +54,19 @@ class _SearchTextFeildState extends State<SearchTextFeild> {
           color: CustomColor.kgrey900,
           fontWeight: CustomFontWeight.kSemiBoldFontWeight),
       decoration: InputDecoration(
-          prefixIcon:
-              Icon(widget.prefixicon, color: focusNode.hasFocus?CustomColor.kprimaryblue:CustomColor.kgrey400, size: 18.sp),
-         suffixIcon: IconButton(
-          onPressed: widget.onsuffexpresssed,
-           icon: Icon(
-                      IconlyLight.filter,
-                      size: 18.sp,
-                      color: CustomColor.kprimaryblue,
-                    ),
-         ),
+          prefixIcon: Icon(widget.prefixicon,
+              color: focusNode.hasFocus
+                  ? CustomColor.kprimaryblue
+                  : CustomColor.kgrey400,
+              size: 18.sp),
+          suffixIcon: IconButton(
+            onPressed: widget.onsuffexpresssed,
+            icon: Icon(
+              IconlyLight.filter,
+              size: 18.sp,
+              color: CustomColor.kprimaryblue,
+            ),
+          ),
           //     ? obsecureText
           //         ? InkWell(
           //             onTap: () {

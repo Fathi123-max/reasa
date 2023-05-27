@@ -18,6 +18,9 @@ class Resident {
   double price;
   String perDayNight;
   bool favourite;
+  String lang;
+  String lant;
+
   Resident({
     required this.image,
     required this.imagesOfProperty,
@@ -34,6 +37,8 @@ class Resident {
     required this.price,
     required this.perDayNight,
     required this.favourite,
+    required this.lang,
+    required this.lant,
   });
   Resident copyWith({
     String? image,
@@ -51,6 +56,8 @@ class Resident {
     double? price,
     String? perDayNight,
     bool? favourite,
+    String? lang,
+    String? lant,
   }) {
     return Resident(
       image: image ?? this.image,
@@ -68,6 +75,8 @@ class Resident {
       price: price ?? this.price,
       perDayNight: perDayNight ?? this.perDayNight,
       favourite: favourite ?? this.favourite,
+      lang: lang ?? this.lang,
+      lant: lant ?? this.lant,
     );
   }
 
@@ -88,6 +97,8 @@ class Resident {
       'price': price,
       'perDayNight': perDayNight,
       'favourite': favourite,
+      "lang": lang,
+      "lant": lant
     };
   }
 
@@ -108,6 +119,8 @@ class Resident {
       price: map['price'] as double,
       perDayNight: map['perDayNight'] as String,
       favourite: map['favourite'] as bool,
+      lang: map['lang'] as String,
+      lant: map['lant'] as String,
     );
   }
   String toJson() => json.encode(toMap());
@@ -118,7 +131,7 @@ class Resident {
     return 'Resident(image: $image, imagesOfProperty: $imagesOfProperty, location: $location, '
         'bedRooms: $bedRooms, bathRooms: $bathRooms, sizeRoom: $sizeRoom, owner: $owner, '
         'name: $name, city: $city, countryTag: $countryTag, rating: $rating, description: $description, '
-        'price: $price, perDayNight: $perDayNight, favourite: $favourite)';
+        'price: $price, perDayNight: $perDayNight, favourite: $favourite,lang:$lang,lant:$lant)';
   }
 
   @override
@@ -140,7 +153,9 @@ class Resident {
         other.description == description &&
         other.price == price &&
         other.perDayNight == perDayNight &&
-        other.favourite == favourite;
+        other.favourite == favourite &&
+        other.lang == lang &&
+        other.lant == lant;
   }
 
   @override
@@ -159,6 +174,8 @@ class Resident {
         description.hashCode ^
         price.hashCode ^
         perDayNight.hashCode ^
-        favourite.hashCode;
+        favourite.hashCode ^
+        lang.hashCode ^
+        lant.hashCode;
   }
 }

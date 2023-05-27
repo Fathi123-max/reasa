@@ -1,0 +1,5 @@
+{
+	"easycode.dataCollection": true,
+	"easycode.maxTokens": 500,
+	"easycode.temperature": 1
+}

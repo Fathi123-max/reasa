@@ -79,6 +79,8 @@ class _ResidentFormScreenState extends State<ResidentFormScreen> {
                       price: price,
                       perDayNight: perDayNight,
                       favourite: favourite,
+                      lang: '',
+                      lant: '',
                     );
                     final firebaseController = Get.find<FirebaseController>();
 

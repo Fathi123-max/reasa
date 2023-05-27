@@ -1,6 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.reasa.reasa">
-   <application
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application
         android:label="reasa"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

@@ -1,13 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:reasa/app/Model/resident_Model.dart';
-import 'package:reasa/app/data/assets_path.dart';
 import 'package:reasa/app/data/chip_list.dart';
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
 import 'package:reasa/app/modules/home/Widgets/custom_drop.dart';
 import 'package:reasa/app/modules/home/Widgets/getback.dart';
+import 'package:reasa/app/modules/home/Widgets/recommended_container.dart';
 import 'package:reasa/app/modules/home/Widgets/row_button.dart';
 import 'package:reasa/app/modules/home/Widgets/search_textfeild.dart';
 import 'package:reasa/app/modules/home/Widgets/wrapper.dart';
@@ -15,6 +17,8 @@ import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../../Widgets/resident_chip.dart';
+import '../../controllers/firebase_controller.dart';
+import '../detailscreens/detailspage.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -30,6 +34,8 @@ class _SearchScreenState extends State<SearchScreen> {
   List<Resident> searchrecommendedresidents = [];
   List<String> loction = ['New York, United State', 'Londen, UK'];
   String selectedlocation = 'New York, United State';
+  String? searchQury = "";
+  final FirebaseController _firebaseService = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -49,245 +55,255 @@ class _SearchScreenState extends State<SearchScreen> {
             SizedBox(
               height: 56.h,
               width: 336.w,
-              child: SearchTextFeild(
-                onChanged: (p0) {},
-                controller: serachController,
-                textInputType: TextInputType.multiline,
-                hintText: "Search",
-                showHidePassIcon: false,
-                showCalenderIcon: false,
-                prefixicon: IconlyLight.search,
-                onsuffexpresssed: () {
-                  showModalBottomSheet(
-                      context: context,
-                      shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(24.r)),
-                      ),
-                      backgroundColor: Colors.white,
-                      isScrollControlled: true,
-                      builder: (context) {
-                        return FractionallySizedBox(
-                          heightFactor: 0.9,
-                          child: Container(
-                            height: 797.h,
-                            // decoration: BoxDecoration(
-                            //   borderRadius: BorderRadius.vertical(top: Radius.circular(24.r))
-                            // ),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 8.h,
-                                  ),
-                                  Center(
-                                    child: Container(
-                                      height: 3.h,
-                                      width: 38.w,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(24.r),
-                                          color: CustomColor.kgrey300),
+              child: GetBuilder<FirebaseController>(
+                init: FirebaseController(),
+                builder: (controllerOfGet) => SearchTextFeild(
+                  onChanged: (str) {
+                    _firebaseService.search.value = str;
+                    print(
+                        '${controllerOfGet.search.value} *********************');
+                  },
+                  controller: serachController,
+                  textInputType: TextInputType.multiline,
+                  hintText: "Search",
+                  showHidePassIcon: false,
+                  showCalenderIcon: false,
+                  prefixicon: IconlyLight.search,
+                  onsuffexpresssed: () {
+                    showModalBottomSheet(
+                        context: context,
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(24.r)),
+                        ),
+                        backgroundColor: Colors.white,
+                        isScrollControlled: true,
+                        builder: (context) {
+                          return FractionallySizedBox(
+                            heightFactor: 0.9,
+                            child: Container(
+                              height: 797.h,
+                              // decoration: BoxDecoration(
+                              //   borderRadius: BorderRadius.vertical(top: Radius.circular(24.r))
+                              // ),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 8.h,
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 24.h,
-                                  ),
-                                  Center(
-                                    child: "Filter".h4(
-                                        color: CustomColor.kgrey900,
-                                        fontWeight:
-                                            CustomFontWeight.kBoldFontWeight),
-                                  ),
-                                  SizedBox(
-                                    height: 24.h,
-                                  ),
-                                  SizedBox(
-                                    width: 380.w,
-                                    child: Divider(
-                                      color: CustomColor.kgrey200,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 24.w),
-                                    child: "Category".h6(
-                                        color: CustomColor.kgrey900,
-                                        fontWeight:
-                                            CustomFontWeight.kBoldFontWeight),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 24.w, top: 24.h, bottom: 24.h),
-                                    child: ReisidentChip(),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 24.w, bottom: 24.h),
-                                    child: "Price Range".h6(
-                                        color: CustomColor.kgrey900,
-                                        fontWeight:
-                                            CustomFontWeight.kBoldFontWeight),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 10.h),
-                                    child: SfRangeSliderTheme(
-                                      data: SfRangeSliderThemeData(
-                                        tooltipBackgroundColor:
-                                            CustomColor.kprimaryblue,
-                                        tooltipTextStyle: CustomTextStyle.ksmall
-                                            .copyWith(
-                                                color: CustomColor
-                                                    .kbackgroundwhite,
-                                                fontWeight: CustomFontWeight
-                                                    .kSemiBoldFontWeight),
-                                      ),
-                                      child: SfRangeSlider(
-                                        activeColor: CustomColor.kprimaryblue,
-                                        inactiveColor: CustomColor.kgrey200,
-                                        shouldAlwaysShowTooltip: true,
-                                        min: 10.0,
-                                        max: 100.0,
-                                        values: values,
-                                        interval: 20,
-                                        showTicks: false,
-                                        showLabels: false,
-                                        enableTooltip: true,
-                                        tooltipTextFormatterCallback:
-                                            (dynamic actualValue,
-                                                String formattedText) {
-                                          return "\$$actualValue";
-                                        },
-                                        tooltipShape:
-                                            SfRectangularTooltipShape(),
-                                        minorTicksPerInterval: 1,
-                                        onChanged: (SfRangeValues values) {
-                                          setState(() {
-                                            values = values;
-                                          });
-                                        },
+                                    Center(
+                                      child: Container(
+                                        height: 3.h,
+                                        width: 38.w,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(24.r),
+                                            color: CustomColor.kgrey300),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 24.w, bottom: 24.h),
-                                    child: "Facilities".h6(
-                                        color: CustomColor.kgrey900,
-                                        fontWeight:
-                                            CustomFontWeight.kBoldFontWeight),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      left: 24.w,
+                                    SizedBox(
+                                      height: 24.h,
                                     ),
-                                    child: FacilitiesChip(
-                                      chiplist: facilitieschip,
+                                    Center(
+                                      child: "Filter".h4(
+                                          color: CustomColor.kgrey900,
+                                          fontWeight:
+                                              CustomFontWeight.kBoldFontWeight),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 24.w, bottom: 24.h, top: 24.h),
-                                    child: "Location".h6(
-                                        color: CustomColor.kgrey900,
-                                        fontWeight:
-                                            CustomFontWeight.kBoldFontWeight),
-                                  ),
-                                  Center(
-                                    child: Container(
-                                      height: 60.h,
-                                      width: 380.w,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                              kContRadius),
-                                          color: CustomColor.kgrey50),
-                                      child: Center(
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 20.w),
-                                          child: DropDownCustom(
-                                            value: selectedlocation,
-                                            OnChanged: (String? value) {
-                                              setState(() {
-                                                selectedlocation = value!;
-                                              });
-                                            },
-                                            items: loction.map((String items) {
-                                              return DropdownMenuItem(
-                                                  value: items,
-                                                  child: Text(items,
-                                                      style: CustomTextStyle
-                                                          .kmedium
-                                                          .copyWith(
-                                                        color: CustomColor
-                                                            .kgrey900,
-                                                        fontWeight: CustomFontWeight
-                                                            .kSemiBoldFontWeight,
-                                                      )));
-                                            }).toList(),
-                                            hint: '',
-                                            hintenable: true,
-                                          ),
-                                        ),
-                                      ),
+                                    SizedBox(
+                                      height: 24.h,
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 24.w, bottom: 24.h, top: 24.h),
-                                    child: "Rating".h6(
-                                        color: CustomColor.kgrey900,
-                                        fontWeight:
-                                            CustomFontWeight.kBoldFontWeight),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      left: 24.w,
-                                    ),
-                                    child: FacilitiesChip(
-                                      chiplist: ratingchip,
-                                    ),
-                                  ),
-                                  Center(
-                                    child: SizedBox(
+                                    SizedBox(
                                       width: 380.w,
                                       child: Divider(
                                         color: CustomColor.kgrey200,
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 24.h,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      RowOutlineButton(
-                                        title: 'Reset',
-                                        onPressed: () {},
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 24.w),
+                                      child: "Category".h6(
+                                          color: CustomColor.kgrey900,
+                                          fontWeight:
+                                              CustomFontWeight.kBoldFontWeight),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: 24.w, top: 24.h, bottom: 24.h),
+                                      child: ReisidentChip(),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: 24.w, bottom: 24.h),
+                                      child: "Price Range".h6(
+                                          color: CustomColor.kgrey900,
+                                          fontWeight:
+                                              CustomFontWeight.kBoldFontWeight),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 10.h),
+                                      child: SfRangeSliderTheme(
+                                        data: SfRangeSliderThemeData(
+                                          tooltipBackgroundColor:
+                                              CustomColor.kprimaryblue,
+                                          tooltipTextStyle:
+                                              CustomTextStyle.ksmall.copyWith(
+                                                  color: CustomColor
+                                                      .kbackgroundwhite,
+                                                  fontWeight: CustomFontWeight
+                                                      .kSemiBoldFontWeight),
+                                        ),
+                                        child: SfRangeSlider(
+                                          activeColor: CustomColor.kprimaryblue,
+                                          inactiveColor: CustomColor.kgrey200,
+                                          shouldAlwaysShowTooltip: true,
+                                          min: 10.0,
+                                          max: 100.0,
+                                          values: values,
+                                          interval: 20,
+                                          showTicks: false,
+                                          showLabels: false,
+                                          enableTooltip: true,
+                                          tooltipTextFormatterCallback:
+                                              (dynamic actualValue,
+                                                  String formattedText) {
+                                            return "\$$actualValue";
+                                          },
+                                          tooltipShape:
+                                              SfRectangularTooltipShape(),
+                                          minorTicksPerInterval: 1,
+                                          onChanged: (SfRangeValues values) {
+                                            setState(() {
+                                              values = values;
+                                            });
+                                          },
+                                        ),
                                       ),
-                                      SizedBox(width: 12.w),
-                                      RowElevatedButton(
-                                        title: 'Apply',
-                                        onPressed: () {},
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: 24.w, bottom: 24.h),
+                                      child: "Facilities".h6(
+                                          color: CustomColor.kgrey900,
+                                          fontWeight:
+                                              CustomFontWeight.kBoldFontWeight),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        left: 24.w,
                                       ),
-                                    ],
-                                  )
-                                ]),
-                          ),
-                        );
-                      });
-                },
-                // onChanged: (value) {
-                //   setState(() {
-                //     searchrecommendedresidents = recommendedresidents
-                //         .where((element) => element.name
-                //             .toLowerCase()
-                //             .contains(value.toLowerCase()))
-                //         .toList();
-                //   });
-                // },
+                                      child: FacilitiesChip(
+                                        chiplist: facilitieschip,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: 24.w, bottom: 24.h, top: 24.h),
+                                      child: "Location".h6(
+                                          color: CustomColor.kgrey900,
+                                          fontWeight:
+                                              CustomFontWeight.kBoldFontWeight),
+                                    ),
+                                    Center(
+                                      child: Container(
+                                        height: 60.h,
+                                        width: 380.w,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                                kContRadius),
+                                            color: CustomColor.kgrey50),
+                                        child: Center(
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 20.w),
+                                            child: DropDownCustom(
+                                              value: selectedlocation,
+                                              OnChanged: (String? value) {
+                                                setState(() {
+                                                  selectedlocation = value!;
+                                                });
+                                              },
+                                              items:
+                                                  loction.map((String items) {
+                                                return DropdownMenuItem(
+                                                    value: items,
+                                                    child: Text(items,
+                                                        style: CustomTextStyle
+                                                            .kmedium
+                                                            .copyWith(
+                                                          color: CustomColor
+                                                              .kgrey900,
+                                                          fontWeight:
+                                                              CustomFontWeight
+                                                                  .kSemiBoldFontWeight,
+                                                        )));
+                                              }).toList(),
+                                              hint: '',
+                                              hintenable: true,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: 24.w, bottom: 24.h, top: 24.h),
+                                      child: "Rating".h6(
+                                          color: CustomColor.kgrey900,
+                                          fontWeight:
+                                              CustomFontWeight.kBoldFontWeight),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        left: 24.w,
+                                      ),
+                                      child: FacilitiesChip(
+                                        chiplist: ratingchip,
+                                      ),
+                                    ),
+                                    Center(
+                                      child: SizedBox(
+                                        width: 380.w,
+                                        child: Divider(
+                                          color: CustomColor.kgrey200,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 24.h,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        RowOutlineButton(
+                                          title: 'Reset',
+                                          onPressed: () {},
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        RowElevatedButton(
+                                          title: 'Apply',
+                                          onPressed: () {},
+                                        ),
+                                      ],
+                                    )
+                                  ]),
+                            ),
+                          );
+                        });
+                  },
+                  // onChanged: (value) {
+                  //   setState(() {
+                  //     searchrecommendedresidents = recommendedresidents
+                  //         .where((element) => element.name
+                  //             .toLowerCase()
+                  //             .contains(value.toLowerCase()))
+                  //         .toList();
+                  //   });
+                  // },
+                ),
               ),
             ),
           ],
@@ -340,65 +356,83 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ),
 
-        /// Not Found Condition
-        // serachController.text.isNotEmpty && searchrecommendedresidents.isEmpty
-        //     ? NotFoundCondition()
-        //     : isView
-        //         ? Expanded(
-        //             child: ListView.separated(
-        //               padding: EdgeInsets.all(24.h),
-        //               separatorBuilder: (BuildContext context, int index) {
-        //                 return SizedBox(
-        //                   height: 34.h,
-        //                 );
-        //               },
-        //               itemCount: serachController.text.isNotEmpty
-        //                   ? searchrecommendedresidents.length
-        //                   : recommendedresidents.length,
-        //               itemBuilder: (BuildContext context, int index) {
-        //                 return RowResidentContainer(
-        //                   resident: serachController.text.isNotEmpty
-        //                       ? searchrecommendedresidents[index]
-        //                       : recommendedresidents[index], onPressed: () {  }, onfavouritepressed: false,
-        //                 );
-        //               },
-        //             ),
-        //           )
-        //         : Expanded(
-        //             child: GridView.builder(
-        //                 padding: EdgeInsets.symmetric(
-        //                     horizontal: 24.w, vertical: 24.h),
-        //                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        //                     crossAxisCount: 2,
-        //                     childAspectRatio: 182.w / 274.h,
-        //                     crossAxisSpacing: 16.h,
-        //                     mainAxisSpacing: 16.h),
-        //                 itemCount: serachController.text.isNotEmpty
-        //                     ? searchrecommendedresidents.length
-        //                     : recommendedresidents.length,
-        //                 itemBuilder: (BuildContext ctx, index) {
-        //                   return RecommendedContainer(
-        //                     resident: serachController.text.isNotEmpty
-        //                         ? searchrecommendedresidents[index]
-        //                         : recommendedresidents[index],
-        //                     onPressed: () {}, onFavouritePressed: () {  }, isFavoruited: false,
-        //                   );
-        //                 }),
-        //           ),
+        // Not Found Condition
+        serachController.text.isNotEmpty && searchrecommendedresidents.isEmpty
+            ? NotFoundCondition()
+            : isView
+                ? NotFoundCondition()
+                : NotFoundCondition()
       ]),
     )));
   }
 }
 
 class NotFoundCondition extends StatelessWidget {
-  const NotFoundCondition({
+  NotFoundCondition({
     Key? key,
   }) : super(key: key);
+  final FirebaseController _firebaseService = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ListView(
+      child: StreamBuilder<QuerySnapshot<Resident>>(
+        stream: _firebaseService.residentsRefSearch.snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          return GetBuilder<FirebaseController>(
+            init: FirebaseController(),
+            builder: (favController) {
+              final residents =
+                  snapshot.data!.docs.map((doc) => doc.data()).toList();
+
+              return SizedBox(
+                height: 500.h,
+                child: GridView.builder(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 24.w,
+                    vertical: 24.h,
+                  ),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 182.w / 274.h,
+                    crossAxisSpacing: 16.h,
+                    mainAxisSpacing: 16.h,
+                  ),
+                  itemCount: residents.length,
+                  itemBuilder: (BuildContext ctx, index) {
+                    final resident = residents[index];
+
+                    return RecommendedContainer(
+                      resident: resident,
+                      onPressed: () {
+                        Get.to(() => DetailPage(
+                              resident: resident,
+                            ));
+                      },
+                      onFavouritePressed: () {
+                        favController.toggleFavourite(resident);
+                      },
+                      isFavoruited: favController.isFavourited(resident),
+                    );
+                  },
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
+
+
+
+/**ListView(
         children: [
           SizedBox(
             height: 606.h,
@@ -432,7 +466,7 @@ class NotFoundCondition extends StatelessWidget {
                 ]),
           )
         ],
-      ),
-    );
-  }
-}
+      ), */
+
+
+/** */

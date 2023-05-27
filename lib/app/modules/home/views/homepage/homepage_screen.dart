@@ -167,56 +167,55 @@ class Homepage extends StatelessWidget {
               //   height: 24.h,
               // ),
               SizedBox(
-                  height: 400.h,
                   child: StreamBuilder<QuerySnapshot<Resident>>(
-                    stream: _firebaseService.residentsRef.snapshots(),
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData) {
-                        return Center(child: CircularProgressIndicator());
-                      }
-                      final residents =
-                          snapshot.data!.docs.map((doc) => doc.data()).toList();
+                stream: _firebaseService.residentsRef.snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  final residents =
+                      snapshot.data!.docs.map((doc) => doc.data()).toList();
 
-                      return GetBuilder<FirebaseController>(
-                        init: FirebaseController(),
-                        builder: (favController) {
-                          return SizedBox(
-                            height: 700.h,
-                            child: GridView.builder(
-                              scrollDirection: Axis.horizontal,
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 24.w,
-                                vertical: 24.h,
-                              ),
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 1,
-                                childAspectRatio: 182.w / 274.h,
-                                crossAxisSpacing: 16.h,
-                                mainAxisSpacing: 16.h,
-                              ),
-                              itemCount: residents.length,
-                              itemBuilder: (BuildContext ctx, index) {
-                                final resident = residents[index];
+                  return GetBuilder<FirebaseController>(
+                    init: FirebaseController(),
+                    builder: (favController) {
+                      return SizedBox(
+                        height: 400.h,
+                        width: MediaQuery.of(context).size.width,
+                        child: GridView.builder(
+                          scrollDirection: Axis.horizontal,
+                          padding: EdgeInsets.symmetric(
+                            vertical: 24.h,
+                          ),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 1,
+                            childAspectRatio: 182.w / 274.h,
+                            crossAxisSpacing: 16.h,
+                            mainAxisSpacing: 16.h,
+                          ),
+                          itemCount: residents.length,
+                          itemBuilder: (BuildContext ctx, index) {
+                            final resident = residents[index];
 
-                                return FeaturedResidentContainer(
-                                  resident: resident,
-                                  onPressed: () {
-                                    Get.to(() => DetailPage(
-                                          resident: resident,
-                                        ));
-                                  },
-                                  onFavouritePressed: () {
-                                    favController.toggleFavourite(resident);
-                                  },
-                                );
+                            return FeaturedResidentContainer(
+                              resident: resident,
+                              onPressed: () {
+                                Get.to(() => DetailPage(
+                                      resident: resident,
+                                    ));
                               },
-                            ),
-                          );
-                        },
+                              onFavouritePressed: () {
+                                favController.toggleFavourite(resident);
+                              },
+                            );
+                          },
+                        ),
                       );
                     },
-                  )),
+                  );
+                },
+              )),
               // SizedBox(
               //   height: 24.h,
               // ),
@@ -260,7 +259,6 @@ class Homepage extends StatelessWidget {
                       return SizedBox(
                         height: 500.h,
                         child: GridView.builder(
-                          physics: NeverScrollableScrollPhysics(),
                           padding: EdgeInsets.symmetric(
                             horizontal: 24.w,
                             vertical: 24.h,

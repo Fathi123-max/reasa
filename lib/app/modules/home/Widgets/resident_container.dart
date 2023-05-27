@@ -27,8 +27,9 @@ class _FeaturedResidentContainerState extends State<FeaturedResidentContainer> {
     return InkWell(
       onTap: widget.onPressed,
       child: Container(
+        margin: EdgeInsets.all(7.h),
         height: 400.h,
-        width: 300.w,
+        width: 230.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40.r),
           image: DecorationImage(
