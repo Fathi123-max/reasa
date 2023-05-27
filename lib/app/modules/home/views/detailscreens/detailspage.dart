@@ -10,13 +10,14 @@ import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
 import 'package:reasa/app/modules/home/Widgets/getback.dart';
 import 'package:reasa/app/modules/home/views/Chat/chat_page.dart';
-import 'package:reasa/app/modules/home/views/Chat/voice_call.dart';
 import 'package:reasa/app/modules/home/views/booking/book_calender.dart';
 import 'package:reasa/app/modules/home/views/detailscreens/full_map_sccreen.dart';
 import 'package:reasa/app/modules/home/views/detailscreens/gallery.dart';
 import 'package:reasa/app/modules/home/views/detailscreens/map.dart';
 import 'package:reasa/app/modules/home/views/detailscreens/review.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../../Services/phone_dailer.dart';
 
 class DetailPage extends StatelessWidget {
   final Resident resident;
@@ -413,7 +414,7 @@ class DetailPage extends StatelessWidget {
                     padding: EdgeInsets.zero,
                     constraints: BoxConstraints(),
                     onPressed: () {
-                      Get.to(() => VoiceCallScreen());
+                      phone.launchPhoneDialer();
                     },
                     icon: Icon(
                       IconlyLight.call,

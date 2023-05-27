@@ -4,7 +4,7 @@ import 'package:reasa/app/Model/chatmodel.dart';
 
 class ChatController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  RxList<Message> _messages = <Message>[].obs;
+  final RxList<Message> _messages = <Message>[].obs;
 
   @override
   void onInit() {
@@ -15,9 +15,9 @@ class ChatController extends GetxController {
   void _fetchMessages() async {
     QuerySnapshot querySnapshot = await _firestore.collection('messages').get();
     _messages.clear();
-    querySnapshot.docs.forEach((doc) {
+    for (var doc in querySnapshot.docs) {
       _messages.add(Message.fromMap(doc.data() as Map<String, dynamic>));
-    });
+    }
   }
 
   void sendMessage(Message message) async {

@@ -8,6 +8,7 @@ import 'package:reasa/app/Model/chatmodel.dart';
 import 'package:reasa/app/Model/user_model.dart';
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
+import 'package:reasa/app/modules/home/Services/phone_dailer.dart';
 import 'package:reasa/app/modules/home/Widgets/chattextfeild.dart';
 import 'package:reasa/app/modules/home/Widgets/getback.dart';
 import 'package:reasa/app/modules/home/Widgets/show_menu_pop.dart';
@@ -16,7 +17,6 @@ import 'package:reasa/app/modules/home/controllers/chat_controller.dart';
 import 'package:reasa/app/modules/home/views/Chat/Widgets/sender_and_reciver.container.dart';
 import 'package:reasa/app/modules/home/views/Chat/camera_photo.dart';
 import 'package:reasa/app/modules/home/views/Chat/video_call_screen.dart';
-import 'package:reasa/app/modules/home/views/Chat/voice_call.dart';
 
 class ChatPage extends StatefulWidget {
   final Message message;
@@ -34,7 +34,7 @@ class _ChatPageState extends State<ChatPage> {
   final ChatController _chatController = Get.put(ChatController());
   final ScrollController _scrollController = ScrollController();
   late final StreamSubscription<List<Message>> _messageSubscription;
-/**  */
+
   var chatcontroller = TextEditingController();
   @override
   void initState() {
@@ -76,7 +76,7 @@ class _ChatPageState extends State<ChatPage> {
                       color: CustomColor.kgrey900,
                     ),
                     onPressed: () {
-                      Get.to(() => VoiceCallScreen());
+                      phone.launchPhoneDialer();
                     },
                   ),
                   IconButton(
@@ -163,7 +163,11 @@ class _ChatPageState extends State<ChatPage> {
                       GestureDetector(
                         onTap: () {
                           _chatController.sendMessage(Message(
-                            sender: User(name: 'John Doe', id: 25, image: ""),
+                            sender: User(
+                                name: 'John Doe',
+                                id: 25,
+                                image: "",
+                                phoneNumber: ''),
                             time: DateTime.now().toString(),
                             text: chatcontroller.text,
                             isread: false,
