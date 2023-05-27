@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -28,14 +21,16 @@ class Calllisttile extends StatelessWidget {
       padding: EdgeInsets.only(left: 14.w, right: 10.w),
       child: InkWell(
         onTap: () {
-          Get.to(() => ChatPage(message: chat,));
+          Get.to(() => ChatPage(
+                message: chat,
+              ));
         },
         child: ListTile(
           leading: CircleAvatar(
             radius: 25.r,
             backgroundImage: AssetImage(chat.sender.image),
           ),
-          title: chat.sender.name.h6(
+          title: chat.sender.fullName.h6(
               color: CustomColor.kgrey900,
               fontWeight: CustomFontWeight.kBoldFontWeight),
           subtitle: "2 mints ago".medium(
@@ -45,15 +40,16 @@ class Calllisttile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-               IconButton(
-                onPressed: (){
-                  Get.to(()=> VoiceCallScreen());
-                },
-                 icon: Icon(IconlyBold.call,
-                  size: 24.sp,
-                   color: CustomColor.kgrey900,
-                 ),
-               ),
+                IconButton(
+                  onPressed: () {
+                    Get.to(() => VoiceCallScreen());
+                  },
+                  icon: Icon(
+                    IconlyBold.call,
+                    size: 24.sp,
+                    color: CustomColor.kgrey900,
+                  ),
+                ),
                 // SizedBox(
                 //   height: 10.h,
                 // ),

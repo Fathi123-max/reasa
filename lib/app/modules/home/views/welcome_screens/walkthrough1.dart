@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:reasa/app/data/assets_path.dart';
 import 'package:reasa/app/data/constants.dart';
 import 'package:reasa/app/data/typography.dart';
-import 'package:reasa/app/modules/home/views/homepage/bottom_nav_bar.dart';
+import 'package:reasa/app/modules/home/views/Auth/profile_form.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class WalkThrough extends StatefulWidget {
@@ -57,7 +57,7 @@ class _WalkThroughState extends State<WalkThrough> {
         text: 'Let\'s find the real\nestate that suits you\nright now!',
         image: CustomAssets.welcome3,
         onPressed: () {
-          Get.to(() => NavigationBarScreen());
+          Get.to(() => ProfileForm());
         },
         buttontext: 'Get Started',
       ),

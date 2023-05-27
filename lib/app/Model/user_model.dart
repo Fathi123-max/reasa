@@ -2,18 +2,19 @@
 import 'dart:convert';
 
 import 'package:reasa/app/data/assets_path.dart';
+import 'package:uuid/uuid.dart';
 
 class User {
-  int id;
+  String id;
   String phoneNumber;
-  String name;
+  String fullName;
   String image;
+
   User({
-    required this.id,
     required this.phoneNumber,
-    required this.name,
+    required this.fullName,
     required this.image,
-  });
+  }) : id = Uuid().v4();
 
   User copyWith({
     int? id,
@@ -22,9 +23,8 @@ class User {
     String? image,
   }) {
     return User(
-      id: id ?? this.id,
       phoneNumber: phoneNumber ?? this.phoneNumber,
-      name: name ?? this.name,
+      fullName: name ?? this.fullName,
       image: image ?? this.image,
     );
   }
@@ -33,16 +33,15 @@ class User {
     return <String, dynamic>{
       'id': id,
       'phoneNumber': phoneNumber,
-      'name': name,
+      'name': fullName,
       'image': image,
     };
   }
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      id: map['id'] as int,
       phoneNumber: map['phoneNumber'] as String,
-      name: map['name'] as String,
+      fullName: map['name'] as String,
       image: map['image'] as String,
     );
   }
@@ -54,7 +53,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(id: $id, phoneNumber: $phoneNumber, name: $name, image: $image)';
+    return 'User(id: $id, phoneNumber: $phoneNumber, name: $fullName, image: $image)';
   }
 
   @override
@@ -63,13 +62,16 @@ class User {
 
     return other.id == id &&
         other.phoneNumber == phoneNumber &&
-        other.name == name &&
+        other.fullName == fullName &&
         other.image == image;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^ phoneNumber.hashCode ^ name.hashCode ^ image.hashCode;
+    return id.hashCode ^
+        phoneNumber.hashCode ^
+        fullName.hashCode ^
+        image.hashCode;
   }
 }
 
@@ -86,56 +88,47 @@ List<User> userlist = [
 ];
 
 User currentuser = User(
-  id: 0,
-  name: 'currentuser',
+  fullName: 'currentuser',
   image: CustomAssets.charalett,
   phoneNumber: '',
 );
 
 User angelina = User(
-  id: 1,
-  name: 'Lauralee Quintero',
+  fullName: 'Lauralee Quintero',
   image: CustomAssets.charalett,
   phoneNumber: '',
 );
 User rohan = User(
-  id: 2,
-  name: "Annabel Rohan",
+  fullName: "Annabel Rohan",
   image: CustomAssets.natprofile,
   phoneNumber: '',
 );
 User alfonzo = User(
-  id: 3,
-  name: "Alfonzo Schuessler",
+  fullName: "Alfonzo Schuessler",
   image: CustomAssets.lauratee,
   phoneNumber: '',
 );
 User anguestina = User(
-  id: 4,
-  name: "Augustina Midgett",
+  fullName: "Augustina Midgett",
   image: CustomAssets.ailee,
   phoneNumber: '',
 );
 User rodalfo = User(
-  id: 5,
-  name: "Freida Varnes",
+  fullName: "Freida Varnes",
   image: CustomAssets.rodalfo,
   phoneNumber: '',
 );
 User tanner = User(
-    id: 6,
-    name: 'Tanner Stafford',
+    fullName: 'Tanner Stafford',
     image: CustomAssets.charalett,
     phoneNumber: '');
 User ordonez = User(
-    id: 7,
-    name: 'Sanjuanita Ordonez',
+    fullName: 'Sanjuanita Ordonez',
     image: CustomAssets.rodalfo,
     phoneNumber: '');
 User dorrance = User(
-    id: 8,
-    name: 'Florencio Dorrance',
+    fullName: 'Florencio Dorrance',
     image: CustomAssets.natprofile,
     phoneNumber: '');
 User clinton = User(
-    id: 9, name: 'Clinton Mcclure', image: CustomAssets.ailee, phoneNumber: '');
+    fullName: 'Clinton Mcclure', image: CustomAssets.ailee, phoneNumber: '');

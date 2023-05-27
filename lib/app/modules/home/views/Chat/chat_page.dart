@@ -107,7 +107,7 @@ class _ChatPageState extends State<ChatPage> {
                   SizedBox(width: 24.w),
                 ],
                 backgroundColor: CustomColor.kbackgroundwhite,
-                title: widget.message.sender.name.h4(
+                title: widget.message.sender.fullName.h4(
                     color: CustomColor.kgrey900,
                     fontWeight: CustomFontWeight.kBoldFontWeight),
                 leading: GetBackIcon(),
@@ -164,8 +164,7 @@ class _ChatPageState extends State<ChatPage> {
                         onTap: () {
                           _chatController.sendMessage(Message(
                             sender: User(
-                                name: 'John Doe',
-                                id: 25,
+                                fullName: 'John Doe',
                                 image: "",
                                 phoneNumber: ''),
                             time: DateTime.now().toString(),

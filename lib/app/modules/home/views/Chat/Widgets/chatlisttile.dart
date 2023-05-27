@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -26,14 +19,16 @@ class ChatListTile extends StatelessWidget {
       padding: EdgeInsets.only(left: 8.w, right: 10.w),
       child: InkWell(
         onTap: () {
-          Get.to(() => ChatPage(message: chat,));
+          Get.to(() => ChatPage(
+                message: chat,
+              ));
         },
         child: ListTile(
           leading: CircleAvatar(
             radius: 25.r,
             backgroundImage: AssetImage(chat.sender.image),
           ),
-          title: chat.sender.name.h6(
+          title: chat.sender.fullName.h6(
               color: CustomColor.kgrey900,
               fontWeight: CustomFontWeight.kBoldFontWeight),
           subtitle: chat.text.medium(
@@ -43,22 +38,24 @@ class ChatListTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                chat.isread ? SizedBox(
-                   height: 25.h,
-                  width: 25.w,
-                ): Container(
-                  height: 25.h,
-                  width: 25.w,
-                  decoration: BoxDecoration(
-                    color: CustomColor.kprimaryblue,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Center(
-                    child: "3".xsmall(
-                        color: CustomColor.kbackgroundwhite,
-                        fontWeight: CustomFontWeight.kRegularWeight),
-                  ),
-                ),
+                chat.isread
+                    ? SizedBox(
+                        height: 25.h,
+                        width: 25.w,
+                      )
+                    : Container(
+                        height: 25.h,
+                        width: 25.w,
+                        decoration: BoxDecoration(
+                          color: CustomColor.kprimaryblue,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: "3".xsmall(
+                              color: CustomColor.kbackgroundwhite,
+                              fontWeight: CustomFontWeight.kRegularWeight),
+                        ),
+                      ),
                 SizedBox(
                   height: 10.h,
                 ),
